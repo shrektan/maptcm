@@ -30,7 +30,7 @@ navbarPage(
     title = "Global Map",
     h1(getwd()),
     h1(normalizePath("./data.xlsx")),
-    h1(normalizePath("data.xlsx")),
+    h1(htmltools::p(paste0(dir(), collapse = ", "))),
     leafletOutput("global_map", height = "800px")
   ),
   tabPanel(
