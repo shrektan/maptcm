@@ -11,15 +11,6 @@ library(shinyjs)
 library(shinyBS)
 library(leaflet)
 
-# data --------------------------------------------------------------------
-
-# read data
-dt <- readxl::read_excel("./data.xlsx") %>% setDT()
-dt_lng_lat <- readxl::read_excel("./lng-lat.xlsx") %>% setDT()
-
-# gen random attitude
-dt[, c("lng", "lat") := dt_lng_lat[sample(1:.N, nrow(dt)), .(lng, lat)]]
-
 # ui ----------------------------------------------------------------------
 
 navbarPage(
@@ -28,9 +19,6 @@ navbarPage(
   collapsible = TRUE,
   tabPanel(
     title = "Global Map",
-    h1(getwd()),
-    h1(normalizePath("./data.xlsx")),
-    h1(htmltools::p(paste0(dir(), collapse = ", "))),
     leafletOutput("global_map", height = "800px")
   ),
   tabPanel(

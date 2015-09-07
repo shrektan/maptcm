@@ -1,4 +1,15 @@
 
+# data --------------------------------------------------------------------
+
+# read data
+dt <- readxl::read_excel("./data.xlsx") %>% setDT()
+dt_lng_lat <- readxl::read_excel("./lng-lat.xlsx") %>% setDT()
+
+# gen random attitude
+dt[, c("lng", "lat") := dt_lng_lat[sample(1:.N, nrow(dt)), .(lng, lat)]]
+
+# server ------------------------------------------------------------------
+
 function(input, output, session) {
   output$query_table <- renderDataTable({
     datatable(
