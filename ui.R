@@ -28,6 +28,7 @@ navbarPage(
   collapsible = TRUE,
   tabPanel(
     title = "Global Map",
+    h1(getwd()),
     leafletOutput("global_map", height = "800px")
   ),
   tabPanel(
