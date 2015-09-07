@@ -4,7 +4,7 @@ function(input, output, session) {
     datatable(
       dt, 
       selection = list(mode = "single", target = "row", selected = 1),
-      options = list(pageLength = 5, scrollX = TRUE, autoWidth = FALSE)
+      options = list(pageLength = 1, scrollX = TRUE, autoWidth = FALSE)
     )
   })
   output$location <- renderLeaflet({

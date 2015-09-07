@@ -37,7 +37,8 @@ navbarPage(
       open = c("Query Table", "Location"),
       bsCollapsePanel(
         title = "Query Table",
-        dataTableOutput("query_table")
+        dataTableOutput("query_table"),
+        tags$style(type = "text/css", "#query_table{font-size:12px}")
       ),
       bsCollapsePanel(
         title = "Location",
