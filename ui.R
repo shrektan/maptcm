@@ -14,8 +14,8 @@ library(leaflet)
 # data --------------------------------------------------------------------
 
 # read data
-dt <- readxl::read_excel("data.xlsx") %>% setDT()
-dt_lng_lat <- readxl::read_excel("lng-lat.xlsx") %>% setDT()
+dt <- readxl::read_excel("./data.xlsx") %>% setDT()
+dt_lng_lat <- readxl::read_excel("./lng-lat.xlsx") %>% setDT()
 
 # gen random attitude
 dt[, c("lng", "lat") := dt_lng_lat[sample(1:.N, nrow(dt)), .(lng, lat)]]
@@ -29,6 +29,8 @@ navbarPage(
   tabPanel(
     title = "Global Map",
     h1(getwd()),
+    h1(normalizePath("./data.xlsx")),
+    h1(normalizePath("data.xlsx")),
     leafletOutput("global_map", height = "800px")
   ),
   tabPanel(
