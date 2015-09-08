@@ -51,15 +51,31 @@ sidebar <- dashboardSidebar(
     id = "sidebarvalue",
     menuItem(
       "Global Map",
-      tabName = "GlobalMap"
+      tabName = "GlobalMap",
+      icon = icon("tags")
     ),
     menuItem(
       "Query",
-      tabName = "Query"
+      tabName = "Query",
+      icon = icon("search")
+    ),
+    conditionalPanel(
+      "input.sidebarvalue == 'Query'",
+      radioButtons("query_lang", NULL, c("中文", "English"), inline = TRUE),
+      dataTableOutput("query_table"),
+      tags$style(
+        type = "text/css", 
+        "#query_table{font-size:11px;background-color:white;color:black}")
     ),
     menuItem(
       "Info Maintenance",
-      tabName = "Info"
+      tabName = "Info",
+      icon = icon("info")
+    ),
+    menuItem(
+      "Fork me on GitHub",
+      href = "https://github.com/shrektan/CMUnivMap",
+      icon = icon("github")
     )
   )
 )
@@ -80,18 +96,22 @@ body <- dashboardBody(
     tabItem(
       "Query",
       box(
-        title = "Query",
-        width = 6,
-        solidHeader = TRUE,
-        dataTableOutput("query_table"),
-        tags$style(type = "text/css", "#query_table{font-size:11px}")
+        width = 8,
+        title = "Location",
+        leafletOutput("location", height = "500px")
       ),
       box(
-        title = "Location",
-        width = 6,
-        solidHeader = TRUE,
-        leafletOutput("location")
+        width = 4,
+        title = "Detailed Info",
+        uiOutput("detailed_info"),
+        tags$style(
+          type = "text/css", 
+          "#detailed_info{font-size:12px")
       )
+    ),
+    tabItem(
+      "Info",
+      "Sorry, it's in process."
     )
   )
 )
