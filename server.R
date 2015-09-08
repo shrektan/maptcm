@@ -13,9 +13,12 @@ dt[, c("lng", "lat") := dt_lng_lat[sample(1:.N, nrow(dt)), .(lng, lat)]]
 function(input, output, session) {
   output$query_table <- renderDataTable({
     datatable(
-      dt, 
+      dt[, .(名称)], 
       selection = list(mode = "single", target = "row", selected = 1),
-      options = list(pageLength = 1, scrollX = TRUE, autoWidth = FALSE)
+      options = list(pageLength = 5, autoWidth = FALSE,
+                     dom = 'tipr', searchHighlight = TRUE),
+      filter = 'top',
+      rownames = FALSE
     )
   })
   output$location <- renderLeaflet({
