@@ -26,9 +26,9 @@ function(input, output, session) {
     input$query_name
     isolate({
       if (input$query_lang == "English") 
-        r <- dt[英文名称 == input$query_name] 
+        r <- dt %>% dplyr::filter(英文名称 == input$query_name)
       else
-        r <- dt[名称 == input$query_name]
+        r <- dt %>% dplyr::filter(名称 == input$query_name)
       r[, popup := paste0(p(名称), p(na2blank(英文名称)), p(na2blank(地址)), collapse = "")]
     })
     r
