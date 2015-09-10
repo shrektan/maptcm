@@ -7,29 +7,31 @@ na2blank <- function(x) ifelse(is.na(x), "", x)
 # data --------------------------------------------------------------------
 
 # read data
-dt <- fread("data.csv")
+dt <- fread("data.csv", encoding = "UTF-8")
+dt_col <- fread("colname_cn.csv", encoding = "UTF-8") %>% setkey(EN)
 
 # server ------------------------------------------------------------------
 
 function(input, output, session) {
+  if_en <- reactive(input$query_lang == "English")
   observe({
     updateSelectizeInput(
       session, "query_name",
-      choices = if (input$query_lang == "中文") {
-        dt[, 名称]
+      choices = if (!if_en()) {
+        dt[, Name]
       } else {
-        dt[, 英文名称]
+        dt[, Name_EN]
       }
     )
   })
   query_dt <- reactive({
     input$query_name
     isolate({
-      if (input$query_lang == "English") 
-        r <- dt %>% dplyr::filter(英文名称 == input$query_name)
+      if (if_en()) 
+        r <- dt %>% dplyr::filter(Name_EN == input$query_name)
       else
-        r <- dt %>% dplyr::filter(名称 == input$query_name)
-      r[, popup := paste0(p(名称), p(na2blank(英文名称)), p(na2blank(地址)), collapse = "")]
+        r <- dt %>% dplyr::filter(Name == input$query_name)
+      r[, popup := paste0(p(Name), p(na2blank(Name_EN)), p(na2blank(Address)), collapse = "")]
     })
     r
   })
@@ -41,12 +43,12 @@ function(input, output, session) {
         radius = 6,
         color = ifelse(runif(nrow(dt)) > 0.5, "navy", "red"),
         stroke = FALSE, fillOpacity = 0.5,
-        lng = ~lng, lat = ~lat
+        lng = ~LNG, lat = ~LAT
       ) %>%
       addPopups(
-        lng = ~lng, lat = ~lat, popup = ~popup
+        lng = ~LNG, lat = ~LAT, popup = ~popup
       ) %>% 
-      setView(lng = query_dt()$lng, lat = query_dt()$lat, zoom = 5)
+      setView(lng = query_dt()$LNG, lat = query_dt()$LAT, zoom = 5)
   })
   output$global_map <- renderLeaflet({
     leaflet(dt) %>% 
@@ -56,15 +58,16 @@ function(input, output, session) {
         radius = 6,
         color = ifelse(runif(nrow(dt)) > 0.5, "navy", "red"),
         stroke = FALSE, fillOpacity = 0.5,
-        lng = ~lng, lat = ~lat, popup = ~名称
+        lng = ~LNG, lat = ~LAT, popup = ~Name
       )
   })
   output$detailed_info <- renderUI({
     tmp <- copy(query_dt())
-    tmp[, c("lng", "lat", "popup") := NULL]
+    tmp[, c("LNG", "LAT", "popup") := NULL]
     tmp2 <- as.character(tmp)
     tmp <- tmp[, which(!is.na(tmp2)), with = FALSE]
     tmp_c <- colnames(tmp)
+    if (!if_en()) tmp_c <- dt_col[J(tmp_c), CN]
     tmp <- paste0(tmp_c, ": ", na2blank(as.character(tmp)))
     HTML(
       paste0(vapply(tmp, function(x) as.character(p(x)), "a"), collapse = "")
