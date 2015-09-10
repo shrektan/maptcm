@@ -98,7 +98,7 @@ body <- dashboardBody(
             selectizeInput(
               "info_target",
               NULL,
-              choices = dt[, Name]
+              choices = NULL
             )
           )
         )
@@ -113,13 +113,13 @@ body <- dashboardBody(
               column(
                 width = 6,
                 selectizeInput("info_class", "类别/Class", 
-                               choices = dt[, unique(Class)],
+                               choices = NULL,
                                options = list(create = TRUE))
               ),
               column(
                 width = 6,
                 selectizeInput("info_class_en", "英文类别/Class_EN", 
-                               choices = dt[, unique(Class_EN)],
+                               choices = NULL,
                                options = list(create = TRUE))
               )
             ),
@@ -137,13 +137,13 @@ body <- dashboardBody(
               column(
                 width = 3,
                 selectizeInput("info_area", "区域/Area", 
-                               choices = dt[, unique(Area)],
+                               choices = NULL,
                                options = list(create = TRUE))
               ),
               column(
                 width = 3,
                 selectizeInput("info_country", "国家/Country", 
-                               choices = dt[, unique(Country)],
+                               choices = NULL,
                                options = list(create = TRUE))
               ),
               column(

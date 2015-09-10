@@ -10,17 +10,48 @@ na2blank <- function(x) ifelse(is.na(x), "", x)
 dt <- fread("data.csv", encoding = "UTF-8")
 dt_col <- fread("colname_cn.csv", encoding = "UTF-8") %>% setkey(EN)
 
+# establish server push
+server_push <- 0L
+
 # server ------------------------------------------------------------------
 
 function(input, output, session) {
+  # establish dt monitor
+  flag_push <- reactivePoll(
+    1000, session, checkFunc = function() {
+      server_push
+    }, valueFunc = function() {
+      server_push
+    }
+  )
+  data <- reactive({
+    flag_push()
+    dt
+  })
+  observeEvent(
+    data(), {
+      updateSelectizeInput(session, "info_target",
+                           choices = data()[, Name])
+      updateSelectizeInput(session, "info_class",
+                           choices = data()[, Class])
+      updateSelectizeInput(session, "info_class_en",
+                           choices = data()[, Class_EN])
+      updateSelectizeInput(session, "info_area",
+                           choices = data()[, Area])
+      updateSelectizeInput(session, "info_country",
+                           choices = data()[, Country])
+    }
+  )
+  
+  # main server
   if_en <- reactive(input$query_lang == "English")
   observe({
     updateSelectizeInput(
       session, "query_name",
       choices = if (!if_en()) {
-        dt[, Name]
+        data()[, Name]
       } else {
-        dt[, Name_EN]
+        data()[, Name_EN]
       }
     )
   })
@@ -28,9 +59,9 @@ function(input, output, session) {
     input$query_name
     isolate({
       if (if_en()) 
-        r <- dt %>% dplyr::filter(Name_EN == input$query_name)
+        r <- data() %>% dplyr::filter(Name_EN == input$query_name)
       else
-        r <- dt %>% dplyr::filter(Name == input$query_name)
+        r <- data() %>% dplyr::filter(Name == input$query_name)
       r[, popup := paste0(p(Name), p(na2blank(Name_EN)), p(na2blank(Address)), collapse = "")]
     })
     r
@@ -41,7 +72,7 @@ function(input, output, session) {
       addProviderTiles("OpenStreetMap.HOT") %>%
       addCircleMarkers(
         radius = 6,
-        color = ifelse(runif(nrow(dt)) > 0.5, "navy", "red"),
+        color = ifelse(runif(nrow(data())) > 0.5, "navy", "red"),
         stroke = FALSE, fillOpacity = 0.5,
         lng = ~LNG, lat = ~LAT
       ) %>%
@@ -51,12 +82,12 @@ function(input, output, session) {
       setView(lng = query_dt()$LNG, lat = query_dt()$LAT, zoom = 5)
   })
   output$global_map <- renderLeaflet({
-    leaflet(dt) %>% 
+    leaflet(data()) %>% 
       addTiles() %>%
       addProviderTiles("OpenStreetMap.HOT") %>%
       addCircleMarkers(
         radius = 6,
-        color = ifelse(runif(nrow(dt)) > 0.5, "navy", "red"),
+        color = ifelse(runif(nrow(data())) > 0.5, "navy", "red"),
         stroke = FALSE, fillOpacity = 0.5,
         lng = ~LNG, lat = ~LAT, popup = ~Name
       )
