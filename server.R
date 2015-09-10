@@ -34,21 +34,19 @@ function(input, output, session) {
     r
   })
   output$location <- renderLeaflet({
-    if (!is.null(input$query_name)) {
-      leaflet(query_dt()) %>% 
-        addTiles() %>%
-        addProviderTiles("OpenStreetMap.HOT") %>%
-        addCircleMarkers(
-          radius = 6,
-          color = ifelse(runif(nrow(dt)) > 0.5, "navy", "red"),
-          stroke = FALSE, fillOpacity = 0.5,
-          lng = ~lng, lat = ~lat
-        ) %>%
-        addPopups(
-          lng = ~lng, lat = ~lat, popup = ~popup
-        ) %>% 
-        setView(lng = query_dt()$lng, lat = query_dt()$lat, zoom = 5)
-    }
+    leaflet(query_dt()) %>% 
+      addTiles() %>%
+      addProviderTiles("OpenStreetMap.HOT") %>%
+      addCircleMarkers(
+        radius = 6,
+        color = ifelse(runif(nrow(dt)) > 0.5, "navy", "red"),
+        stroke = FALSE, fillOpacity = 0.5,
+        lng = ~lng, lat = ~lat
+      ) %>%
+      addPopups(
+        lng = ~lng, lat = ~lat, popup = ~popup
+      ) %>% 
+      setView(lng = query_dt()$lng, lat = query_dt()$lat, zoom = 5)
   })
   output$global_map <- renderLeaflet({
     leaflet(dt) %>% 
@@ -62,16 +60,14 @@ function(input, output, session) {
       )
   })
   output$detailed_info <- renderUI({
-    if (!is.null(input$query_name)) {
-      tmp <- copy(query_dt())
-      tmp[, c("lng", "lat", "popup") := NULL]
-      tmp2 <- as.character(tmp)
-      tmp <- tmp[, which(!is.na(tmp2)), with = FALSE]
-      tmp_c <- colnames(tmp)
-      tmp <- paste0(tmp_c, ": ", na2blank(as.character(tmp)))
-      HTML(
-        paste0(vapply(tmp, function(x) as.character(p(x)), "a"), collapse = "")
-      )
-    }
+    tmp <- copy(query_dt())
+    tmp[, c("lng", "lat", "popup") := NULL]
+    tmp2 <- as.character(tmp)
+    tmp <- tmp[, which(!is.na(tmp2)), with = FALSE]
+    tmp_c <- colnames(tmp)
+    tmp <- paste0(tmp_c, ": ", na2blank(as.character(tmp)))
+    HTML(
+      paste0(vapply(tmp, function(x) as.character(p(x)), "a"), collapse = "")
+    )
   })
 }
