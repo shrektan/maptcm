@@ -1,31 +1,41 @@
 
-# data --------------------------------------------------------------------
-
-# read data
-dt <- readr::read_csv("data.csv") %>% setDT()
+# util --------------------------------------------------------------------
 
 # na2blank
 na2blank <- function(x) ifelse(is.na(x), "", x)
 
+# data --------------------------------------------------------------------
+
+# read data
+dt <- fread("data.csv")
+
 # server ------------------------------------------------------------------
 
 function(input, output, session) {
-  output$query_table <- renderDataTable({
-    datatable(
-      class = "compact hover row-border stripe",
-      if (input$query_lang == "English") dt[, .(英文名称)] else dt[, .(名称)],
-      selection = list(mode = "single", target = "row", selected = 1),
-      options = list(pageLength = 5, autoWidth = FALSE,
-                     dom = 'tipr', searchHighlight = TRUE),
-      filter = 'top',
-      rownames = TRUE
+  observe({
+    updateSelectizeInput(
+      session, "query_name",
+      choices = if (input$query_lang == "中文") {
+        dt[, 名称]
+      } else {
+        dt[, 英文名称]
+      }
     )
   })
+  query_dt <- reactive({
+    input$query_name
+    isolate({
+      if (input$query_lang == "English") 
+        r <- dt[英文名称 == input$query_name] 
+      else
+        r <- dt[名称 == input$query_name]
+      r[, popup := paste0(p(名称), p(na2blank(英文名称)), p(na2blank(地址)), collapse = "")]
+    })
+    r
+  })
   output$location <- renderLeaflet({
-    if (!is.null(input$query_table_rows_selected)) {
-      tmp <- dt[input$query_table_rows_selected][
-        , popup := paste0(p(名称), p(na2blank(英文名称)), p(na2blank(地址)), collapse = "")]
-      leaflet(tmp) %>% 
+    if (!is.null(input$query_name)) {
+      leaflet(query_dt()) %>% 
         addTiles() %>%
         addProviderTiles("OpenStreetMap.HOT") %>%
         addCircleMarkers(
@@ -37,7 +47,7 @@ function(input, output, session) {
         addPopups(
           lng = ~lng, lat = ~lat, popup = ~popup
         ) %>% 
-        setView(lng = tmp$lng, lat = tmp$lat, zoom = 5)
+        setView(lng = query_dt()$lng, lat = query_dt()$lat, zoom = 5)
     }
   })
   output$global_map <- renderLeaflet({
@@ -52,9 +62,9 @@ function(input, output, session) {
       )
   })
   output$detailed_info <- renderUI({
-    if (!is.null(input$query_table_rows_selected)) {
-      tmp <- dt[input$query_table_rows_selected]
-      tmp[, c("lng", "lat") := NULL]
+    if (!is.null(input$query_name)) {
+      tmp <- copy(query_dt())
+      tmp[, c("lng", "lat", "popup") := NULL]
       tmp2 <- as.character(tmp)
       tmp <- tmp[, which(!is.na(tmp2)), with = FALSE]
       tmp_c <- colnames(tmp)

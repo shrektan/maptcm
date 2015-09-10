@@ -34,10 +34,9 @@ sidebar <- dashboardSidebar(
     conditionalPanel(
       "input.sidebarvalue == 'Query'",
       radioButtons("query_lang", NULL, c("中文", "English"), inline = TRUE),
-      dataTableOutput("query_table"),
-      tags$style(
-        type = "text/css", 
-        "#query_table{font-size:11px;background-color:white;color:black}")
+      selectizeInput("query_name", label = NULL, choices = NULL),
+      tags$style(type = "text/css", "#query_name{font-size:11px};"),
+      br()
     ),
     menuItem(
       "Info Maintenance",
@@ -78,16 +77,11 @@ body <- dashboardBody(
         uiOutput("detailed_info"),
         tags$style(
           type = "text/css", 
-          "#detailed_info{font-size:12px")
+          "#detailed_info{font-size:12px}")
       )
     ),
     tabItem(
-      "Info",
-      shinyBS::bsModal(
-        id = "pwd",
-        title = "Password",
-        trigger = "sidebarvalue"
-      )
+      "Info"
     )
   )
 )
