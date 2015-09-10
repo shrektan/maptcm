@@ -73,4 +73,57 @@ function(input, output, session) {
       paste0(vapply(tmp, function(x) as.character(p(x)), "a"), collapse = "")
     )
   })
+  # info maintenance
+  # if add then clear info; if modify then load info
+  observe({
+    if (input$info_mode == "add") {
+      isolate({
+        shinyjs::reset("info_class")
+        shinyjs::reset("info_class_en")
+        shinyjs::reset("info_name")
+        shinyjs::reset("info_name_en")
+        shinyjs::reset("info_area")
+        shinyjs::reset("info_country")
+        shinyjs::reset("info_lng")
+        shinyjs::reset("info_lat")
+        session$sendInputMessage("info_address", list(value = ""))
+        session$sendInputMessage("info_website", list(value = ""))
+      })
+    }
+  })
+  observe(
+    if (input$info_mode == "modify") {
+      dt_tgt <- data() %>% dplyr::filter(Name == input$info_target)
+      isolate({
+        updateSelectizeInput(session, "info_class", selected = dt_tgt[, Class])
+        updateSelectizeInput(session, "info_class_en", selected = dt_tgt[, Class_EN])
+        updateTextInput(session, "info_name", value = dt_tgt[, Name])
+        updateTextInput(session, "info_name_en", value = dt_tgt[, Name_EN])
+        updateSelectizeInput(session, "info_area", selected = dt_tgt[, Area])
+        updateSelectizeInput(session, "info_country", selected = dt_tgt[, Country])
+        updateNumericInput(session, "info_lng", value = dt_tgt[, LNG])
+        updateNumericInput(session, "info_lat", value = dt_tgt[, LAT])
+        session$sendInputMessage("info_address", list(value = dt_tgt[, Address]))
+        session$sendInputMessage("info_website", list(value = dt_tgt[, Website]))
+      })
+    }
+  )
+  # submit info maintenance
+  observeEvent(
+    input$info_submit,
+    switch(
+      input$info_mode,
+      "add" = {
+        if (is.null(input$info_lng)) {
+          shinyjs::info("LNG needs a number!")
+          return()
+        }
+        if (is.null(input$info_lat)) {
+          shinyjs::info("LAT needs a number!")
+          return()
+        }
+        
+      }
+    )
+  )
 }

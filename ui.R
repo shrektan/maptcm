@@ -54,6 +54,7 @@ sidebar <- dashboardSidebar(
 # body --------------------------------------------------------------------
 
 body <- dashboardBody(
+  shinyjs::useShinyjs(),
   tabItems(
     tabItem(
       "GlobalMap",
