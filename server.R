@@ -199,7 +199,7 @@ function(input, output, session) {
       input$info_mode,
       "add" = {
         check_info()
-        dt <<- rbindlist(list(dt, read_info()))
+        dt <<- rbindlist(list(dt, read_info()), use.names = TRUE)
         # save csv file
         backup_data()
         readr::write_csv(dt, "data.csv", append = FALSE)
@@ -213,7 +213,7 @@ function(input, output, session) {
         # delete old
         dt <<- dt %>% dplyr::filter(Name != input$info_target)
         # add new
-        dt <<- rbindlist(list(dt, read_info()))
+        dt <<- rbindlist(list(dt, read_info()), use.names = TRUE)
         # save csv file
         backup_data()
         readr::write_csv(dt, "data.csv", append = FALSE)
