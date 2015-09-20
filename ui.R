@@ -50,13 +50,17 @@ sidebar <- dashboardSidebar(
       "input.sidebarvalue == 'Query'",
       radioButtons("query_lang", NULL, c("中文", "English"), inline = TRUE),
       selectizeInput("query_name", label = NULL, choices = NULL),
-      tags$style(type = "text/css", "#query_name{font-size:11px};"),
-      br()
+      tags$style(type = "text/css", "#query_name{font-size:11px}")
     ),
     menuItem(
       "Info Maintenance",
       tabName = "Info",
       icon = icon("info")
+    ),
+    menuItem(
+      "Download Data",
+      tabName = "Download",
+      icon = icon("cloud-download")
     ),
     menuItem(
       "Fork me on GitHub",
@@ -209,6 +213,10 @@ body <- dashboardBody(
           actionButton("info_submit", "提交/Submit")
         )
       )
+    ),
+    tabItem(
+      "Download",
+      p("Click here to ", downloadLink("download", "download data"), ".")
     )
   )
 )

@@ -233,5 +233,11 @@ function(input, output, session) {
       }
     )
   )
+  output$download <- downloadHandler(
+    filename = function() sprintf("map-data-%s.xlsx", format(Sys.time(), "%Y%m%d-%H%M%S")),
+    content = function(file) {
+      openxlsx::write.xlsx(dt, file, as.Table = FALSE)
+    }
+  )
   hide(id = "loading-content", anim = TRUE, animType = "fade")    
 }
