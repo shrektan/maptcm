@@ -199,7 +199,14 @@ function(input, output, session) {
       input$info_mode,
       "add" = {
         check_info()
-        dt <<- rbindlist(list(dt, read_info()), use.names = TRUE)
+        # check if duplicate info
+        new <- read_info()
+        shinyjs_validate(
+          need(!(new$Name %in% dt$Name), "Duplicate Chinese Name!"),
+          need(!(new$Name_EN %in% dt$Name_EN), "Duplicate English Name!")
+        )
+        # rbind
+        dt <<- rbindlist(list(dt, new), use.names = TRUE)
         # save csv file
         backup_data()
         readr::write_csv(dt, "data.csv", append = FALSE)
@@ -210,10 +217,18 @@ function(input, output, session) {
       },
       "modify" = {
         check_info()
+        # check if duplicate info
+        new <- read_info()
+        shinyjs_validate(
+          need(!(new$Name %in% dt$Name[dt$Name != input$info_target]),
+               "Duplicate Chinese Name!"),
+          need(!(new$Name_EN %in% dt$Name_EN[dt$Name != input$info_target]), 
+               "Duplicate English Name!")
+        )
         # delete old
         dt <<- dt %>% dplyr::filter(Name != input$info_target)
         # add new
-        dt <<- rbindlist(list(dt, read_info()), use.names = TRUE)
+        dt <<- rbindlist(list(dt, new), use.names = TRUE)
         # save csv file
         backup_data()
         readr::write_csv(dt, "data.csv", append = FALSE)
