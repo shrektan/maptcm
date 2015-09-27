@@ -77,7 +77,7 @@ function(input, output, session) {
       addPopups(
         lng = ~LNG, lat = ~LAT, popup = ~popup
       ) %>% 
-      setView(lng = query_dt()$LNG, lat = query_dt()$LAT, zoom = 5)
+      setView(lng = query_dt()$LNG, lat = query_dt()$LAT, zoom = 13)
   })
   output$global_map <- renderLeaflet({
     leaflet(data()) %>% 
