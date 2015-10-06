@@ -66,8 +66,10 @@ function(input, output, session) {
   })
   output$location <- renderLeaflet({
     leaflet(query_dt()) %>% 
-      addTiles() %>%
-      addProviderTiles("OpenStreetMap.HOT") %>%
+      addTiles(
+        urlTemplate = "//{s}.tiles.mapbox.com/v3/jcheng.map-5ebohr46/{z}/{x}/{y}.png",
+        attribution = 'Maps by <a href="http://www.mapbox.com/">Mapbox</a>'
+      ) %>%
       addCircleMarkers(
         radius = 6,
         color = ifelse(runif(nrow(data())) > 0.5, "navy", "red"),
@@ -81,8 +83,10 @@ function(input, output, session) {
   })
   output$global_map <- renderLeaflet({
     leaflet(data()) %>% 
-      addTiles() %>%
-      addProviderTiles("OpenStreetMap.HOT") %>%
+      addTiles(
+        urlTemplate = "//{s}.tiles.mapbox.com/v3/jcheng.map-5ebohr46/{z}/{x}/{y}.png",
+        attribution = 'Maps by <a href="http://www.mapbox.com/">Mapbox</a>'
+      ) %>%
       addCircleMarkers(
         radius = 6,
         color = ifelse(runif(nrow(data())) > 0.5, "navy", "red"),
