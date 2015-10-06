@@ -67,7 +67,7 @@ function(input, output, session) {
   output$location <- renderLeaflet({
     leaflet(query_dt()) %>% 
       addTiles(
-        urlTemplate = "//{s}.tiles.mapbox.com/v3/jcheng.map-5ebohr46/{z}/{x}/{y}.png",
+        urlTemplate = "//{s}.tiles.mapbox.com/v3/jcheng.map-5ebohr46/{z}/{x}/{y}@2x.png",
         attribution = 'Maps by <a href="http://www.mapbox.com/">Mapbox</a>'
       ) %>%
       addCircleMarkers(
@@ -84,7 +84,7 @@ function(input, output, session) {
   output$global_map <- renderLeaflet({
     leaflet(data()) %>% 
       addTiles(
-        urlTemplate = "//{s}.tiles.mapbox.com/v3/jcheng.map-5ebohr46/{z}/{x}/{y}.png",
+        urlTemplate = "//{s}.tiles.mapbox.com/v3/jcheng.map-5ebohr46/{z}/{x}/{y}@2x.png",
         attribution = 'Maps by <a href="http://www.mapbox.com/">Mapbox</a>'
       ) %>%
       addCircleMarkers(
