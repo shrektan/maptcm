@@ -2,6 +2,7 @@
 # server ------------------------------------------------------------------
 
 function(input, output, session) {
+  
   # establish dt monitor
   flag_push <- reactivePoll(
     1000, session, checkFunc = function() {
@@ -20,80 +21,103 @@ function(input, output, session) {
     updateSelectizeInput(session, "info_class",
                          choices = data()[, Class])
     updateSelectizeInput(session, "info_class_en",
-                         choices = data()[, Class_EN])
+                         choices = data()[, ClassEN])
     updateSelectizeInput(session, "info_area",
                          choices = data()[, Area])
     updateSelectizeInput(session, "info_country",
                          choices = data()[, Country])
   })
   
+  # data table
+  output$data <- renderDataTable({
+    r <-
+      data() %>%
+      dplyr::mutate(Action = paste0(
+        '<a class="go-map" href="" data-lat="', LAT, 
+        '" data-long="', LNG, '" data-name="', Name, '"><i class="fa fa-crosshairs"></i></a>')
+      )
+    action <- DT::dataTableAjax(session, r)
+    DT::datatable(r, options = list(ajax = list(url = action), scrollX = TRUE), escape = FALSE)
+  })
+  
   # main server
-  if_en <- reactive(FALSE)#input$query_lang == "English")
-  observe({
-    updateSelectizeInput(
-      session, "query_name",
-      choices = if (!if_en()) {
-        data()[, Name]
-      } else {
-        data()[, Name_EN]
-      }
-    )
-  })
-  query_dt <- reactive({
-    input$query_name
-    isolate({
-      if (if_en()) 
-        r <- data() %>% dplyr::filter(Name_EN == input$query_name)
-      else
-        r <- data() %>% dplyr::filter(Name == input$query_name)
-      r[, popup := paste0(p(Name), p(na2blank(Name_EN)), p(na2blank(Address)), collapse = "")]
-    })
-    r
-  })
-  output$location <- renderLeaflet({
-    leaflet(query_dt()) %>% 
-      addTiles(
-        urlTemplate = "https://api.mapbox.com/v4/shrektan.ciffhrg2x8fe2suknjq6qv5g7/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoic2hyZWt0YW4iLCJhIjoiY2lmZmhyaTR3OGczeHNtbHhyb2Rjb2cwcSJ9.c2vjzcma6a24uYuUpyXUWQ",
-        attribution = 'Maps by <a href="http://www.mapbox.com/">Mapbox</a>'
-      ) %>%
-      addCircleMarkers(
-        radius = 6,
-        color = ifelse(runif(nrow(data())) > 0.5, "navy", "red"),
-        stroke = FALSE, fillOpacity = 0.5,
-        lng = ~LNG, lat = ~LAT
-      ) %>%
-      addPopups(
-        lng = ~LNG, lat = ~LAT, popup = ~popup
-      ) %>% 
-      setView(lng = query_dt()$LNG, lat = query_dt()$LAT, zoom = 13)
-  })
   output$map <- renderLeaflet({
-    leaflet(data()) %>% 
+    leaflet() %>% 
       addTiles(
         urlTemplate = "https://api.mapbox.com/v4/shrektan.ciffhrg2x8fe2suknjq6qv5g7/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoic2hyZWt0YW4iLCJhIjoiY2lmZmhyaTR3OGczeHNtbHhyb2Rjb2cwcSJ9.c2vjzcma6a24uYuUpyXUWQ",
         attribution = 'Maps by <a href="http://www.mapbox.com/">Mapbox</a>'
-      ) %>%
-      addCircleMarkers(
-        radius = 6,
-        color = ifelse(runif(nrow(data())) > 0.5, "navy", "red"),
-        stroke = FALSE, fillOpacity = 0.5,
-        lng = ~LNG, lat = ~LAT, popup = ~Name
       ) %>% 
       setView(lng = 0, lat = 30, zoom = 2)
   })
+  
+  def_icons <- iconList(
+    院校 = makeIcon("icons/university.svg", "icons/university.svg", 24, 24),
+    医疗机构 = makeIcon("icons/hospital.svg", "icons/hospital.svg", 24, 24)
+  )
+  
+  observe({
+    leafletProxy("map", data = data()) %>%
+      clearShapes() %>%
+      addMarkers(~LNG, ~LAT, layerId = ~Name, icon = ~def_icons[Class])
+      # addCircles(~LNG, ~LAT, radius = 100, layerId = ~Name,
+                 # stroke = FALSE, fillOpacity = 0.4, 
+                 # fillColor = "red") 
+  })
+  
   output$detailed_info <- renderUI({
-    tmp <- copy(query_dt())
-    tmp[, c("LNG", "LAT", "popup") := NULL]
-    tmp2 <- as.character(tmp)
-    tmp <- tmp[, which(!is.na(tmp2)), with = FALSE]
-    tmp_c <- colnames(tmp)
-    if (!if_en()) tmp_c <- dt_col[J(tmp_c), CN]
-    tmp <- paste0(tmp_c, ": ", na2blank(as.character(tmp)))
-    HTML(
-      paste0(vapply(tmp, function(x) as.character(p(x)), "a"), collapse = "")
-    )
+    event <- input$map_marker_click
+    if (is.null(event)) return()
+    isolate({
+      tmp <- data() %>% dplyr::filter(Name == event$id) %>% dplyr::select(Class:Website)
+      tmp2 <- as.character(tmp)
+      tmp <- tmp[, which(!is.na(tmp2)), with = FALSE]
+      tmp_c <- dt_col[J(colnames(tmp)), CNEN]
+      tmp <- paste0(tmp_c, ": ", na2blank(as.character(tmp)))
+      HTML(
+        paste0(vapply(tmp, function(x) as.character(p(x)), "a"), collapse = "")
+      )
+    })
   })
  
+  # Show a popup at the given location
+  show_popup <- function(name, lat, lng) {
+    r <- data() %>% dplyr::filter(Name == name)
+    content <- as.character(tagList(
+     p(tags$span(dt_col[J("Name"), CNEN], ": ", style = "font-weight:bold;"),
+       br(), br(), r$Name, br(), r$NameEN),
+     p(tags$span(dt_col[J("Address"), CNEN], ": ", style = "font-weight:bold;"), 
+       r$Address),
+     p(tags$span(dt_col[J("Website"), CNEN], ": ", style = "font-weight:bold;"),
+       a(r$Website, href = r$Website, target = "_blank"))
+    ))
+    leafletProxy("map") %>% addPopups(lng, lat, content, layerId = name)
+    shinyjs::show("controls")
+  }
+  
+  # When map is clicked, show a popup with city info
+  observe({
+    leafletProxy("map") %>% clearPopups()
+    event <- input$map_marker_click
+    if (is.null(event)) return()
+    isolate({
+      show_popup(event$id, event$lat, event$lng)
+    })
+  })
+  
+  observe({
+    if (is.null(input$goto)) return()
+    isolate({
+      map <- leafletProxy("map")
+      map %>% clearPopups()
+      dist <- 0.1
+      name <- input$goto$name
+      lat <- input$goto$lat
+      lng <- input$goto$lng
+      show_popup(name, lat, lng)
+      map %>% fitBounds(lng - dist, lat - dist, lng + dist, lat + dist)
+    })
+  })
+  
   source("server_info.R", local = TRUE)
   
   output$download <- downloadHandler(
@@ -102,5 +126,5 @@ function(input, output, session) {
       openxlsx::write.xlsx(dt, file, as.Table = FALSE)
     }
   )
-  hide(id = "loading-content", anim = TRUE, animType = "fade")    
+  hide(id = "loading-content", anim = TRUE, animType = "fade", time = 1.5)    
 }

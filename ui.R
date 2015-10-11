@@ -8,22 +8,33 @@ navbarPage(
   id = "nav",
   tabPanel(
     "Map",
-    icon = icon("tags"),
+    icon = icon("globe"),
     div(
       class = "outer",
       tags$head(# Include our custom CSS
         includeCSS("styles.css"),
-        includeScript("gomap.js")),
+        includeScript("gomap.js"),
+        shinyjs::useShinyjs(),
+        inlineCSS(loading_css)),
+      # Loading message
+      div(
+        id = "loading-content",
+        br(),
+        br(),
+        br(),
+        br(),
+        h2("Loading...")
+      ),
       leafletOutput("map", width = "100%", height = "100%"),
       
       # Shiny versions prior to 0.11 should use class="modal" instead.
       absolutePanel(
         id = "controls", class = "panel panel-default", fixed = TRUE,
-        draggable = TRUE, top = 60, left = "auto", right = 20, bottom = "auto",
+        draggable = TRUE, bottom = 60, left = "auto", right = 20, top = "auto",
         width = 330, height = "auto",
-        h2("ZIP explorer")
-        
-      ),
+        h2("Detailed Info"),
+        uiOutput("detailed_info")
+      ) %>% shinyjs::hidden(),
       tags$div(
         id = "cite",
         'Data provided by ',
@@ -34,7 +45,9 @@ navbarPage(
   
   tabPanel(
     "Data explorer",
-    icon = icon("search")
+    icon = icon("search"),
+    hr(),
+    dataTableOutput("data")
   ),
   tabPanel(
     "Info Maintain",

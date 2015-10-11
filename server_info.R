@@ -16,9 +16,9 @@ reset_info <- function() {
 reload_info <- function(info_target) {
   dt_tgt <- data() %>% dplyr::filter(Name == input$info_target)
   updateSelectizeInput(session, "info_class", selected = dt_tgt[, Class])
-  updateSelectizeInput(session, "info_class_en", selected = dt_tgt[, Class_EN])
+  updateSelectizeInput(session, "info_class_en", selected = dt_tgt[, ClassEN])
   updateTextInput(session, "info_name", value = dt_tgt[, Name])
-  updateTextInput(session, "info_name_en", value = dt_tgt[, Name_EN])
+  updateTextInput(session, "info_name_en", value = dt_tgt[, NameEN])
   updateSelectizeInput(session, "info_area", selected = dt_tgt[, Area])
   updateSelectizeInput(session, "info_country", selected = dt_tgt[, Country])
   updateNumericInput(session, "info_lng", value = dt_tgt[, LNG])
@@ -31,9 +31,9 @@ reload_info <- function(info_target) {
 read_info <- function() {
   data.table(
     Class = input$info_class,
-    Class_EN = input$info_class_en,
+    ClassEN = input$info_class_en,
     Name = input$info_name,
-    Name_EN = input$info_name_en,
+    NameEN = input$info_name_en,
     Area = input$info_area,
     Country = input$info_country,
     Address = input$info_address,
@@ -80,7 +80,7 @@ observeEvent(
       new <- read_info()
       shinyjs_validate(
         need(!(new$Name %in% dt$Name), "Duplicate Chinese Name!"),
-        need(!(new$Name_EN %in% dt$Name_EN), "Duplicate English Name!")
+        need(!(new$NameEN %in% dt$NameEN), "Duplicate English Name!")
       )
       # rbind
       update_data(new)
@@ -94,7 +94,7 @@ observeEvent(
       shinyjs_validate(
         need(!(new$Name %in% dt$Name[dt$Name != input$info_target]),
              "Duplicate Chinese Name!"),
-        need(!(new$Name_EN %in% dt$Name_EN[dt$Name != input$info_target]), 
+        need(!(new$NameEN %in% dt$NameEN[dt$Name != input$info_target]), 
              "Duplicate English Name!")
       )
       # delete old

@@ -4,12 +4,12 @@ $(document).on("click", ".go-map", function(e) {
   $el = $(this);
   var lat = $el.data("lat");
   var long = $el.data("long");
-  var zip = $el.data("zip");
+  var name = $el.data("name");
   $($("#nav a")[0]).tab("show");
   Shiny.onInputChange("goto", {
     lat: lat,
     lng: long,
-    zip: zip,
+    name: name,
     nonce: Math.random()
   });
 });

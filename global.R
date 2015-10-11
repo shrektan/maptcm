@@ -72,7 +72,9 @@ load_data <- function() {
     tmp[, MaxTimeStamp := max(TimeStamp), by = Name][
       MaxTimeStamp == TimeStamp
     ][, MaxTimeStamp := NULL][ifDeleted == FALSE]
-  dt_col <<- fread("data/colname_cn.csv", encoding = "UTF-8") %>% setkey(EN)
+  dt_col <<- 
+    fread("data/colname_cn.csv", encoding = "UTF-8") %>% setkey(EN)
+  dt_col[, CNEN := paste0(CN, "/", EN)]
   invisible()
 }
 
