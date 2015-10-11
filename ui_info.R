@@ -25,6 +25,7 @@ fluidPage(
     bsPanel(
       theme = "default",
       header = "Info Panel",
+      style = NULL,
       fluidRow(
         column(
           width = 6,
@@ -83,7 +84,7 @@ fluidPage(
           ),
           tags$style(type = "text/css", "textarea {width:100%}"),
           tags$textarea(id = 'info_address',
-                        placeholder = 'Type your address here', rows = 4, width = "100%")
+                        placeholder = 'Type your address here', rows = 2, width = "100%")
         )
       ),
       fluidRow(
