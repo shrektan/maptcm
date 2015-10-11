@@ -1,18 +1,4 @@
 
-# util --------------------------------------------------------------------
-
-# na2blank
-na2blank <- function(x) ifelse(is.na(x), "", x)
-
-# data --------------------------------------------------------------------
-
-# read data
-dt <- fread("data.csv", encoding = "UTF-8")
-dt_col <- fread("colname_cn.csv", encoding = "UTF-8") %>% setkey(EN)
-
-# establish server push
-server_push <- 0L
-
 # server ------------------------------------------------------------------
 
 function(input, output, session) {

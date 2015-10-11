@@ -1,32 +1,4 @@
 
-# global setting ----------------------------------------------------------
-
-options(stringsAsFactors = FALSE)
-library(magrittr)
-library(data.table)
-library(shiny)
-library(shinythemes)
-library(shinydashboard)
-library(DT)
-library(shinyjs)
-library(shinyBS)
-library(leaflet)
-
-# loading css -------------------------------------------------------------
-
-loading_css <- "
-#loading-content {
-position: absolute;
-background: #000000;
-opacity: 0.9;
-z-index: 100;
-left: 0;
-right: 0;
-height: 100%;
-text-align: center;
-color: #FFFFFF;
-}"
-
 # header ------------------------------------------------------------------
 
 header <- dashboardHeader(title = "CMUnivMap")
