@@ -28,7 +28,7 @@ function(input, output, session) {
   })
   
   # main server
-  if_en <- reactive(input$query_lang == "English")
+  if_en <- reactive(FALSE)#input$query_lang == "English")
   observe({
     updateSelectizeInput(
       session, "query_name",
@@ -67,7 +67,7 @@ function(input, output, session) {
       ) %>% 
       setView(lng = query_dt()$LNG, lat = query_dt()$LAT, zoom = 13)
   })
-  output$global_map <- renderLeaflet({
+  output$map <- renderLeaflet({
     leaflet(data()) %>% 
       addTiles(
         urlTemplate = "https://api.mapbox.com/v4/shrektan.ciffhrg2x8fe2suknjq6qv5g7/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoic2hyZWt0YW4iLCJhIjoiY2lmZmhyaTR3OGczeHNtbHhyb2Rjb2cwcSJ9.c2vjzcma6a24uYuUpyXUWQ",
@@ -78,7 +78,8 @@ function(input, output, session) {
         color = ifelse(runif(nrow(data())) > 0.5, "navy", "red"),
         stroke = FALSE, fillOpacity = 0.5,
         lng = ~LNG, lat = ~LAT, popup = ~Name
-      )
+      ) %>% 
+      setView(lng = 0, lat = 30, zoom = 2)
   })
   output$detailed_info <- renderUI({
     tmp <- copy(query_dt())
@@ -93,7 +94,7 @@ function(input, output, session) {
     )
   })
  
-  source("info_maintain.R", local = TRUE)
+  source("server_info.R", local = TRUE)
   
   output$download <- downloadHandler(
     filename = function() sprintf("map-data-%s.xlsx", format(Sys.time(), "%Y%m%d-%H%M%S")),

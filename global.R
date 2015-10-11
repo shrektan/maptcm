@@ -47,6 +47,16 @@ shinyjs_validate <- function(...) {
   stop(cond)
 }
 
+# bs Panel
+bsPanel <- function(theme = "default", header, style = NULL, ...) {
+  div(
+    class = paste0("panel panel-", theme),
+    style = style,
+    div(class = "panel-heading", header),
+    div(class = "panel-body", ...)
+  )
+}
+
 # data --------------------------------------------------------------------
 
 dt <- dt_col <- NULL

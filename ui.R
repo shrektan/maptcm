@@ -1,207 +1,62 @@
 
-# header ------------------------------------------------------------------
 
-header <- dashboardHeader(title = "CMUnivMap")
+# new ui ------------------------------------------------------------------
 
-# sidebar -----------------------------------------------------------------
 
-sidebar <- dashboardSidebar(
-  sidebarMenu(
-    id = "sidebarvalue",
-    menuItem(
-      "Global Map",
-      tabName = "GlobalMap",
-      icon = icon("tags")
-    ),
-    menuItem(
-      "Query",
-      tabName = "Query",
-      icon = icon("search")
-    ),
-    conditionalPanel(
-      "input.sidebarvalue == 'Query'",
-      radioButtons("query_lang", NULL, c("中文", "English"), inline = TRUE),
-      selectizeInput("query_name", label = NULL, choices = NULL),
-      tags$style(type = "text/css", "#query_name{font-size:11px}")
-    ),
-    menuItem(
-      "Info Maintenance",
-      tabName = "Info",
-      icon = icon("info")
-    ),
-    menuItem(
-      "Download Data",
-      tabName = "Download",
-      icon = icon("cloud-download")
-    ),
-    menuItem(
-      "Fork me on GitHub",
-      href = "https://github.com/shrektan/CMUnivMap",
-      icon = icon("github")
+navbarPage(
+  title = "Map of CTM",
+  id = "nav",
+  tabPanel(
+    "Map",
+    icon = icon("tags"),
+    div(
+      class = "outer",
+      tags$head(# Include our custom CSS
+        includeCSS("styles.css"),
+        includeScript("gomap.js")),
+      leafletOutput("map", width = "100%", height = "100%"),
+      
+      # Shiny versions prior to 0.11 should use class="modal" instead.
+      absolutePanel(
+        id = "controls", class = "panel panel-default", fixed = TRUE,
+        draggable = TRUE, top = 60, left = "auto", right = 20, bottom = "auto",
+        width = 330, height = "auto",
+        h2("ZIP explorer")
+        
+      ),
+      tags$div(
+        id = "cite",
+        'Data provided by ',
+        tags$em('Yang, Zheng')
+      )
     )
-  )
-)
-
-# body --------------------------------------------------------------------
-
-body <- dashboardBody(
-  shinyjs::useShinyjs(),
-  inlineCSS(loading_css),
-  # Loading message
-  div(
-    id = "loading-content",
-    h2("Loading...")
   ),
-  tabItems(
-    tabItem(
-      "GlobalMap",
-      box(
-        title = "Global Map",
-        width = 12,
-        solidHeader = TRUE,
-        leafletOutput("global_map", height = "600px")            
+  
+  tabPanel(
+    "Data explorer",
+    icon = icon("search")
+  ),
+  tabPanel(
+    "Info Maintain",
+    icon = icon("info"),
+    source("ui_info.R", local = TRUE)$value
+  ),
+  tabPanel(
+    "Download Data",
+    icon = icon("cloud-download"),
+    p("Click here to ", downloadLink("download", "download data"), ".")
+  )
+) %>% 
+  tagList(
+    .,
+    tags$a(
+      href = "https://github.com/shrektan/CMUnivMap",
+      target = "_blank",
+      tags$img(
+        style = "position: absolute; top: 0; right: 0; border: 0;z-index : 9999",
+        src = "https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67",
+        alt = "Fork me on GitHub",
+        `data-canonical-src` = "https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
       )
-    ),
-    tabItem(
-      "Query",
-      box(
-        width = 8,
-        title = "Location",
-        leafletOutput("location", height = "500px")
-      ),
-      box(
-        width = 4,
-        title = "Detailed Info",
-        uiOutput("detailed_info"),
-        tags$style(
-          type = "text/css", 
-          "#detailed_info{font-size:12px}")
-      )
-    ),
-    tabItem(
-      "Info",
-      fluidRow(
-        column(
-          width = 6,
-          radioButtons(
-            "info_mode", NULL, 
-            c("增加/Add" = "add", "修改/Modify" = "modify", "删除/Delete" = "delete"), 
-            inline = TRUE)
-        ),
-        column(
-          width = 6,
-          conditionalPanel(
-            "input.info_mode != 'add'",
-            selectizeInput(
-              "info_target",
-              NULL,
-              choices = NULL
-            )
-          )
-        )
-      ),
-      conditionalPanel(
-        "input.info_mode != 'delete'",
-        bsCollapse(
-          open = "Info Panel",
-          bsCollapsePanel(
-            "Info Panel",
-            fluidRow(
-              column(
-                width = 6,
-                selectizeInput("info_class", "类别/Class", 
-                               choices = NULL,
-                               options = list(create = TRUE))
-              ),
-              column(
-                width = 6,
-                selectizeInput("info_class_en", "英文类别/Class_EN", 
-                               choices = NULL,
-                               options = list(create = TRUE))
-              )
-            ),
-            fluidRow(
-              column(
-                width = 6,
-                textInput("info_name", "名称/Name")
-              ),
-              column(
-                width = 6,
-                textInput("info_name_en", "英文名称/Name_EN")
-              )
-            ),
-            fluidRow(
-              column(
-                width = 3,
-                selectizeInput("info_area", "区域/Area", 
-                               choices = NULL,
-                               options = list(create = TRUE))
-              ),
-              column(
-                width = 3,
-                selectizeInput("info_country", "国家/Country", 
-                               choices = NULL,
-                               options = list(create = TRUE))
-              ),
-              column(
-                width = 3,
-                numericInput("info_lng", "经度/LNG", 0, -180, 180, 0.01)
-              ),
-              column(
-                width = 3,
-                numericInput("info_lat", "纬度/LAT", 0, -180, 180, 0.01)
-              )
-            ),
-            fluidRow(
-              column(
-                width = 12,
-                tags$label(
-                  class = "control-label", `for` = "info_area",
-                  "地址/Address"
-                ),
-                tags$style(type = "text/css", "textarea {width:100%}"),
-                tags$textarea(id = 'info_address',
-                              placeholder = 'Type your address here', rows = 4, width = "100%")
-              )
-            ),
-            fluidRow(
-              column(
-                width = 12,
-                tags$label(
-                  class = "control-label", `for` = "info_website",
-                  "网址/Website"
-                ),
-                tags$style(type = "text/css", "textarea {width:100%}"),
-                tags$textarea(id = 'info_website',
-                              placeholder = 'Type your website here', rows = 2, width = "100%")
-              )
-            )
-          )
-        )
-      ),
-      fluidRow(
-        column(
-          width = 12,
-          actionButton("info_submit", "提交/Submit")
-        )
-      )
-    ),
-    tabItem(
-      "Download",
-      p("Click here to ", downloadLink("download", "download data"), ".")
     )
   )
-)
-
-# ui ----------------------------------------------------------------------
-
-dashboardPage(
-  title = "Chinese Medicine Universities",
-  skin = "yellow",
-  header = header,
-  sidebar = sidebar,
-  body = body
-)
-
-
-
