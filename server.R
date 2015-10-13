@@ -37,7 +37,10 @@ function(input, output, session) {
         '" data-long="', LNG, '" data-name="', Name, '"><i class="fa fa-crosshairs"></i></a>')
       )
     action <- DT::dataTableAjax(session, r)
-    DT::datatable(r, options = list(ajax = list(url = action), scrollX = TRUE), escape = FALSE)
+    DT::datatable(r, options = list(ajax = list(url = action), scrollX = TRUE), 
+                  escape = FALSE, 
+                  class = "hover  row-border nowrap stripe",
+                  selection = "none")
   })
   
   # main server
@@ -51,31 +54,31 @@ function(input, output, session) {
   })
   
   def_icons <- iconList(
-    院校 = makeIcon("icons/university.svg", "icons/university.svg", 24, 24),
-    医疗机构 = makeIcon("icons/hospital.svg", "icons/hospital.svg", 24, 24)
+    College = makeIcon("icons/university.svg", "icons/university.svg", 12 * 1.2, 12 * 1.2),
+    Hospital = makeIcon("icons/hospital.svg", "icons/hospital.svg", 12 * 1.2, 12 * 1.2),
+    Association = makeIcon("icons/Association.svg", "icons/Association.svg", 12 * 1.2, 12 * 1.2),
+    Society = makeIcon("icons/Society.svg", "icons/Society.svg", 12 * 1.2, 12 * 1.2)
   )
   
   observe({
     leafletProxy("map", data = data()) %>%
       clearShapes() %>%
-      addMarkers(~LNG, ~LAT, layerId = ~Name, icon = ~def_icons[Class])
-      # addCircles(~LNG, ~LAT, radius = 100, layerId = ~Name,
-                 # stroke = FALSE, fillOpacity = 0.4, 
-                 # fillColor = "red") 
+      addMarkers(~LNG, ~LAT, layerId = ~Name, icon = ~def_icons[ClassEN])
   })
   
   output$detailed_info <- renderUI({
     event <- input$map_marker_click
     if (is.null(event)) return()
     isolate({
-      tmp <- data() %>% dplyr::filter(Name == event$id) %>% dplyr::select(Class:Website)
-      tmp2 <- as.character(tmp)
-      tmp <- tmp[, which(!is.na(tmp2)), with = FALSE]
+      tmp <- data() %>% dplyr::filter(Name == event$id) %>% dplyr::select(-(LAT:TimeStamp))
+      tmp <- tmp[, which(!is.na(as.character(tmp))), with = FALSE]
       tmp_c <- dt_col[J(colnames(tmp)), CNEN]
-      tmp <- paste0(tmp_c, ": ", na2blank(as.character(tmp)))
-      HTML(
-        paste0(vapply(tmp, function(x) as.character(p(x)), "a"), collapse = "")
-      )
+      r <- vector("list", length(tmp_c))
+      for (i in 1:ncol(tmp)) {
+        r[[i]] <- p(tags$span(tmp_c[i], ":"),
+                    na2blank(as.character(tmp[, i, with = FALSE])))
+      }
+      tagList(r)
     })
   })
  

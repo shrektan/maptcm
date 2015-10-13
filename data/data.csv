@@ -1,6 +1,25 @@
-Class,ClassEN,Name,NameEN,Area,Country,Address,Website,LAT,LNG,ifDeleted,TimeStamp
-院校,University or College,北京中医药大学,Beijing University of Chinese Medicine,亚洲,中国,北京市朝阳区北三环东路11号,http://www.bucm.edu.cn,39.9766,116.433,FALSE,2015-10-11T07:34:41Z
-院校,University or College,美洲中医学院,American College of TCM,北美洲,美国,"455 Arkansas Street, San Francisco 94107",http://www.actcm.edu,37.7605,-122.398,FALSE,2015-10-11T07:34:41Z
-医疗机构,Hospital,中国中医科学院广安门医院,Guang'anmen Hospital China Academy of Chinses Medicine Science,亚洲,中国,北京市西城区北线阁5号,http://www.gamhospital.ac.cn,39.8892,116.345,FALSE,2015-10-11T07:34:41Z
-院校,University or College,上海中医药大学,Shanghai University of Chinese Medicine,亚洲,中国,上海蔡伦路1200号,http://www.shutcm.edu.cn,31.1935,121.596,FALSE,2015-10-11T07:34:41Z
-院校,University or College,南京中医药大学,Nanjing University of Chinese Medicine,亚洲,中国,南京仙林大学城仙林大道138号,http://www.njutcm.edu.cn,32.0619,118.562,FALSE,2015-10-11T07:34:41Z
+Class,ClassEN,Name,NameEN,Area,Country,Address,Website,LAT,LNG,ifDeleted,TimeStamp,City,NameAbbr,ESTTime,Membership,Tel,Email,President,PeriodicalCN,PeriodicalEN,ChinaCorpInstitution
+院校,College,北京中医药大学,Beijing University of Chinese Medicine,亚洲,中国,北京市朝阳区北三环东路11号,http://www.bucm.edu.cn,39.9766,116.433,FALSE,2015-10-11T07:34:41Z,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+院校,College,美洲中医学院,American College of TCM,北美洲,美国,"455 Arkansas Street, San Francisco 94107",http://www.actcm.edu,37.7605,-122.398,FALSE,2015-10-11T07:34:41Z,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+医疗机构,Hospital,中国中医科学院广安门医院,Guang'anmen Hospital China Academy of Chinses Medicine Science,亚洲,中国,北京市西城区北线阁5号,http://www.gamhospital.ac.cn,39.8892,116.345,FALSE,2015-10-11T07:34:41Z,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+院校,College,上海中医药大学,Shanghai University of Chinese Medicine,亚洲,中国,上海蔡伦路1200号,http://www.shutcm.edu.cn,31.1935,121.596,FALSE,2015-10-11T07:34:41Z,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+院校,College,南京中医药大学,Nanjing University of Chinese Medicine,亚洲,中国,南京仙林大学城仙林大道138号,http://www.njutcm.edu.cn,32.0619,118.562,FALSE,2015-10-11T07:34:41Z,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+学会,Association,法国亚洲文化学会（参考翻译）,Ars Asiatica,NA,France,"7 rue Fernand Widal, 75013 Paris",http://www.arsasiatica.fr,48.85341,2.3488,FALSE,2015-10-11T07:34:41Z,Paris,NA,1995,NA,06 61 32 73 26,info@arsasiatica.fr,？Pr Jean-Raymond,NA,NA,NA
+协会,Society,全欧洲中医药学会联合会,Pan-European Federation of TCM Societies,NA,The Netherlands,"Geldersekade 87A, Amsterdam, Noord - Holland, Netherlands,1011 EL",http://www.pefots.com,52.37403,4.88969,FALSE,2015-10-11T07:34:41Z,Amsterdam,PEFOTS,2001,NA,31 20 6892468,NA,Zhilin Dong,NA,European Journals of TCM,NA
+学会,Association,荷兰针灸医师协会（参考翻译）,Nederlandse Artsen Acupunctuur Vereniging,NA,The Netherlands,"NAAV, Nederlandse Artsen Acupunctuur Vereniging
+
+Zuidoostersingel 13
+
+8861 GB Harlingen",http://www.acupunctuur.com,53.17477,5.42244,FALSE,2015-10-11T07:34:41Z,Harlingen,NAAV,NA,NA,06 53401378,info@naav.nl,NA,NA,NA,NA
+学会,Association,荷兰中医药学会（参考翻译）,Association of TCM in the Netherlands,NA,The Netherlands,"Salverdaplein 15, 6701 DB Wageningen",http://www.zhong.nl,51.97,5.66667,FALSE,2015-10-11T07:34:41Z,Wageningen,NA,NA,NA,0317 423 505,info@zhong.nl,NA,NA,NA,NA
+协会,Society,捷克中国生物学协会（参考翻译）,Czechoslovakian SinoBiology Society,NA,Czech Republic,"Revoluční 20
+Prague 1",http://www.cinskamedicina.cz,50.08804,14.42076,FALSE,2015-10-11T07:34:41Z,Prague,NA,1996,NA,222 31 26 14,csbs@tcm.cz or bendova@tcm.cz,NA,NA,NA,NA
+学会,Association,西班牙塞维利亚黄帝针灸学会(参考翻译),Asociación Científica de Médicos Acupuntores de Sevilla,NA,Spain,"Avda. de la Borbolla 47, Sevilla 41013 , Spain",http://www.acmas.com,37.38241,-5.97613,FALSE,2015-10-11T07:34:41Z,Sevilla,ACMAS,NA,NA,NA,NA,NA,NA,NA,中医科学院；广安门医院；北京医科大学第三临床医学院
+协会,Society,全加中医药针灸协会,The Canadian Society of Chinese Medicine and Acupuncture,NA,Canada,"CSCMA Office
+245 Fairview Mall Drive Unit 402
+Toronto, Ontario
+M2J 4T1
+CANADA",http://www.tcmcanada.org,43.70011,-79.4163,FALSE,2015-10-11T07:34:41Z,Toronto,CSCMA,1994,（截止2007年）1900人,416-597-6769,office@tcmcanada.org,程昭,全加中医药针灸协会(半年刊),The Canadian Society of Chinese Medicine and Acupuncture(Biannual),NA
+学会,Association,加拿大中医药针灸学会(参考翻译),Chinese Medicine and Acupuncture Association of Canada,NA,Canada,"154 Wellington St., London, Ontario, N6B 2K8",http://www.cmaac.ca,42.98339,-81.23304,FALSE,2015-10-11T07:34:41Z,"London, Ontario",CMAAC,1983,NA,(519) 642-1970,cmaac@execulink.com,邱玮玲Prof. Wei Ling Qui,NA,NA,NA
+学会,Association,卑诗省中医针灸师联合会,United Acupuncutrists & TCM Association of British Columbia,NA,Canada,NA,http://www.uaabc.com,49.17003,-123.13683,FALSE,2015-10-11T07:34:41Z,Richmond,UAABC,1986,NA,NA,NA,黄健仪,NA,NA,NA
+院校,College,加拿大安大略中医学院（参考翻译）,Ontario College of Traditional Chinese Medicine,NA,Canada,"7100 Warden Avenue, Suite 1A, Markham L3R 8B5",http://www.octcm.com,43.86682,-79.2663,FALSE,2015-10-11T07:34:41Z,Markham,NA,1998,NA,905.477.8855,info@octcm.com,Prof. Bin Jiang Wu,NA,NA,NA

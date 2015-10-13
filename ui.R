@@ -30,7 +30,7 @@ navbarPage(
       # Shiny versions prior to 0.11 should use class="modal" instead.
       absolutePanel(
         id = "controls", class = "panel panel-default", fixed = TRUE,
-        draggable = TRUE, bottom = 60, left = "auto", right = 20, top = "auto",
+        draggable = TRUE, top = 60, left = "auto", right = 20, bottom = "auto",
         width = 330, height = "auto",
         h2("Detailed Info"),
         uiOutput("detailed_info")
@@ -39,6 +39,9 @@ navbarPage(
         id = "cite",
         'Data provided by ',
         tags$em('Yang, Zheng')
+      ),
+      HTML(
+        'Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>             is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>'
       )
     )
   ),
