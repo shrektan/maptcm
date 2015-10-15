@@ -4,7 +4,7 @@
 
 
 navbarPage(
-  title = "Map of CTM",
+  title = "Map of TCM",
   id = "nav",
   tabPanel(
     "Map",
