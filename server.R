@@ -32,16 +32,17 @@ function(input, output, session) {
   output$data <- renderDataTable({
     r <-
       data() %>%
-      dplyr::mutate(Action = paste0(
+      dplyr::mutate(GoTo = paste0(
         '<a class="go-map" href="" data-lat="', LAT, 
         '" data-long="', LNG, '" data-name="', Name, '"><i class="fa fa-crosshairs"></i></a>')
-      )
-    action <- DT::dataTableAjax(session, r)
-    DT::datatable(r, options = list(ajax = list(url = action), scrollX = TRUE), 
+      ) %>%
+      dplyr::select_("GoTo", .dots = colnames(data()))
+    # action <- DT::dataTableAjax(session, r)
+    DT::datatable(r, options = list(scrollX = TRUE), 
                   escape = FALSE, 
                   class = "hover  row-border nowrap stripe",
                   selection = "none")
-  })
+  }, server = FALSE)
   
   # main server
   output$map <- renderLeaflet({
