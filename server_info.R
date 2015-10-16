@@ -79,8 +79,8 @@ observeEvent(
       # check if duplicate info
       new <- read_info()
       shinyjs_validate(
-        need(!(new$Name %in% dt$Name), "Duplicate Chinese Name!"),
-        need(!(new$NameEN %in% dt$NameEN), "Duplicate English Name!")
+        need(!(new$Name %in% data()$Name), "Duplicate Chinese Name!"),
+        need(!(new$NameEN %in% data()$NameEN), "Duplicate English Name!")
       )
       # rbind
       update_data(new)
@@ -92,13 +92,13 @@ observeEvent(
       # check if duplicate info
       new <- read_info()
       shinyjs_validate(
-        need(!(new$Name %in% dt$Name[dt$Name != input$info_target]),
+        need(!(new$Name %in% data()$Name[data()$Name != input$info_target]),
              "Duplicate Chinese Name!"),
-        need(!(new$NameEN %in% dt$NameEN[dt$Name != input$info_target]), 
+        need(!(new$NameEN %in% data()$NameEN[data()$Name != input$info_target]), 
              "Duplicate English Name!")
       )
       # delete old
-      r <- dt %>% 
+      r <- data() %>% 
         dplyr::filter(Name == input$info_target) %>%
         dplyr::mutate(
           ifDeleted = TRUE,
@@ -112,7 +112,7 @@ observeEvent(
     },
     "delete" = {
       # delete old
-      r <- dt %>% 
+      r <- data() %>% 
         dplyr::filter(Name == input$info_target) %>%
         dplyr::mutate(
           ifDeleted = TRUE,

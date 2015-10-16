@@ -59,26 +59,37 @@ bsPanel <- function(theme = "default", header, style = NULL, ...) {
 
 # data --------------------------------------------------------------------
 
-dt <- dt_col <- NULL
+dt_col <- 
+  fread("data/colname_cn.csv", encoding = "UTF-8") %>% setkey(EN)
+dt_col[, CNEN := paste0(CN, "/", EN)]
 
-# load data
-load_data <- function() {
+load_data <- function(path) {
   tmp <- 
-    read_csv("data/data.csv", 
+    read_csv(path, 
              col_types = cols(ifDeleted = col_logical(), 
                               TimeStamp = col_datetime())) %>%
     setDT()
-  dt <<- 
+  f_ <- function(lat, lng, name) {
+    stopifnot(length(lat) == 1, length(lng) == 1, length(name) == 1)
+    as.character(tags$a(class = "go-map", href = "", 
+                        `data-lat` = lat,
+                        `data-long` = lng,
+                        `data-name` = name,
+                        tags$i(class = "fa fa-crosshairs")))
+  }
+  dt <- 
     tmp[, MaxTimeStamp := max(TimeStamp), by = Name][
       MaxTimeStamp == TimeStamp
-    ][, MaxTimeStamp := NULL][ifDeleted == FALSE]
-  dt_col <<- 
-    fread("data/colname_cn.csv", encoding = "UTF-8") %>% setkey(EN)
-  dt_col[, CNEN := paste0(CN, "/", EN)]
-  invisible()
+      ][, MaxTimeStamp := NULL][ifDeleted == FALSE][
+        , GoTo := Map(f_, LAT, LNG, Name) %>% as.character()
+        ]
+  tmp <- colnames(dt)[colnames(dt) != "GoTo"]
+  dt[, c("GoTo", tmp), with = FALSE][]
 }
 
-load_data()
+data <- reactiveFileReader(
+  1000, NULL, "data/data.csv", load_data
+)
 
 # define backup data
 backup_data <- function() {
@@ -92,21 +103,15 @@ backup_data <- function() {
   file.copy("./data/data.csv", backup_file)
   invisible()
 }
-# establish server push
-server_push <- 0L
 
 # update data
 update_data <- function(r) {
   # backup
   backup_data()
   # write csv
-  write_csv(r[, colnames(dt), with = FALSE], 
+  write_csv(r[, colnames(data()), with = FALSE], 
             "data/data.csv", 
             append = file.exists("data/data.csv"))
-  # read csv
-  load_data()
-  # server push
-  server_push <<- server_push + 1L
   # return
   invisible()
 }

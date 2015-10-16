@@ -3,18 +3,6 @@
 
 function(input, output, session) {
   
-  # establish dt monitor
-  flag_push <- reactivePoll(
-    1000, session, checkFunc = function() {
-      server_push
-    }, valueFunc = function() {
-      server_push
-    }
-  )
-  data <- reactive({
-    flag_push()
-    dt
-  })
   observe({
     updateSelectizeInput(session, "info_target",
                          choices = data()[, Name])
@@ -30,19 +18,12 @@ function(input, output, session) {
   
   # data table
   output$data <- renderDataTable({
-    r <-
-      data() %>%
-      dplyr::mutate(GoTo = paste0(
-        '<a class="go-map" href="" data-lat="', LAT, 
-        '" data-long="', LNG, '" data-name="', Name, '"><i class="fa fa-crosshairs"></i></a>')
-      ) %>%
-      dplyr::select_("GoTo", .dots = colnames(data()))
-    # action <- DT::dataTableAjax(session, r)
+    r <- data()
     DT::datatable(r, options = list(scrollX = TRUE), 
-                  escape = FALSE, 
-                  class = "hover  row-border nowrap stripe",
+                  escape = c(-2), 
+                  class = "hover row-border nowrap stripe",
                   selection = "none")
-  }, server = FALSE)
+  }, server = TRUE)
   
   # main server
   output$map <- renderLeaflet({
@@ -71,7 +52,8 @@ function(input, output, session) {
     event <- input$map_marker_click
     if (is.null(event)) return()
     isolate({
-      tmp <- data() %>% dplyr::filter(Name == event$id) %>% dplyr::select(-(LAT:TimeStamp))
+      tmp <- data() %>% dplyr::filter(Name == event$id) %>% 
+        dplyr::select(-(LAT:TimeStamp), -GoTo)
       tmp <- tmp[, which(!is.na(as.character(tmp))), with = FALSE]
       tmp_c <- dt_col[J(colnames(tmp)), CNEN]
       r <- vector("list", length(tmp_c))
