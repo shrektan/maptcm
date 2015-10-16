@@ -36,10 +36,10 @@ function(input, output, session) {
   })
   
   def_icons <- iconList(
-    College = makeIcon("icons/university.svg", "icons/university.svg", 12 * 1.2, 12 * 1.2),
-    Hospital = makeIcon("icons/hospital.svg", "icons/hospital.svg", 12 * 1.2, 12 * 1.2),
-    Association = makeIcon("icons/Association.svg", "icons/Association.svg", 12 * 1.2, 12 * 1.2),
-    Society = makeIcon("icons/Society.svg", "icons/Society.svg", 12 * 1.2, 12 * 1.2)
+    College = makeIcon("icons/university.svg", "icons/university.svg", 12 * 1.5, 12 * 1.5),
+    Hospital = makeIcon("icons/hospital.svg", "icons/hospital.svg", 12 * 1.5, 12 * 1.5),
+    Association = makeIcon("icons/Association.svg", "icons/Association.svg", 12 * 1.5, 12 * 1.5),
+    Society = makeIcon("icons/Society.svg", "icons/Society.svg", 12 * 1.5, 12 * 1.5)
   )
   
   observe({
