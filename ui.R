@@ -29,10 +29,14 @@ navbarPage(
       # Shiny versions prior to 0.11 should use class="modal" instead.
       absolutePanel(
         id = "controls", class = "panel panel-default", fixed = TRUE,
-        draggable = TRUE, top = 60, left = "auto", right = 20, bottom = "auto",
-        width = 330, height = "auto",
-        h2("Detailed Info"),
-        uiOutput("detailed_info")
+        draggable = TRUE, top = 60, left = "auto", right = 10, bottom = "auto",
+        width = 350, height = "auto",
+        absolutePanel(
+          bottom = 5, right = 5, actionLink("back", NULL, icon = icon("globe"))
+        ),
+        hr(),
+        uiOutput("detailed_info"),
+        hr()
       ) %>% shinyjs::hidden(),
       tags$div(
         id = "cite",

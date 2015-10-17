@@ -48,22 +48,6 @@ function(input, output, session) {
       addMarkers(~LNG, ~LAT, layerId = ~Name, icon = ~def_icons[ClassEN])
   })
   
-  output$detailed_info <- renderUI({
-    event <- input$map_marker_click
-    if (is.null(event)) return()
-    isolate({
-      tmp <- data() %>% dplyr::filter(Name == event$id) %>% 
-        dplyr::select(-(LAT:TimeStamp), -GoTo)
-      tmp <- tmp[, which(!is.na(as.character(tmp))), with = FALSE]
-      tmp_c <- dt_col[J(colnames(tmp)), CNEN]
-      r <- vector("list", length(tmp_c))
-      for (i in 1:ncol(tmp)) {
-        r[[i]] <- p(tags$span(tmp_c[i], ":"),
-                    na2blank(as.character(tmp[, i, with = FALSE])))
-      }
-      tagList(r)
-    })
-  })
  
   # Show a popup at the given location
   show_popup <- function(name, lat, lng) {
@@ -77,22 +61,38 @@ function(input, output, session) {
        a(r$Website, href = r$Website, target = "_blank"))
     ))
     leafletProxy("map") %>% addPopups(lng, lat, content, layerId = name)
+    
+    # detail info
     shinyjs::show("controls")
+    output$detailed_info <- renderUI({
+      isolate({
+        tmp <- data() %>% dplyr::filter(Name == name) %>% 
+          dplyr::select(-(LAT:TimeStamp), -GoTo)
+        tmp <- tmp[, which(!is.na(as.character(tmp))), with = FALSE]
+        tmp_c <- dt_col[J(colnames(tmp)), CNEN]
+        r <- vector("list", length(tmp_c))
+        for (i in 1:ncol(tmp)) {
+          r[[i]] <- p(tags$span(tmp_c[i], ":"),
+                      na2blank(as.character(tmp[, i, with = FALSE])))
+        }
+        tagList(r)
+      })
+    })
   }
   
   # When map is clicked, show a popup with city info
-  observe({
-    leafletProxy("map") %>% clearPopups()
-    event <- input$map_marker_click
-    if (is.null(event)) return()
-    isolate({
+  observeEvent(
+    input$map_marker_click, {
+      leafletProxy("map") %>% clearPopups()
+      event <- input$map_marker_click
       show_popup(event$id, event$lat, event$lng)
-    })
-  })
+    }
+  )
   
   observe({
     if (is.null(input$goto)) return()
     isolate({
+      updateNavbarPage(session, "nav", "Map")
       map <- leafletProxy("map")
       map %>% clearPopups()
       dist <- 0.3
@@ -104,6 +104,15 @@ function(input, output, session) {
       map %>% fitBounds(lng - dist, lat - dist, lng + dist, lat + dist)
     })
   })
+  
+  observeEvent(
+    input$back, {
+      shinyjs::hide(id = "controls", anim = TRUE, animType = "slide", time = 0.5)
+      leafletProxy("map") %>% 
+        clearPopups() %>%
+        setView(lng = 0, lat = 30, zoom = 2)
+    }
+  )
   
   source("server_info.R", local = TRUE)
   

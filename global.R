@@ -80,9 +80,8 @@ load_data <- function(path) {
   dt <- 
     tmp[, MaxTimeStamp := max(TimeStamp), by = Name][
       MaxTimeStamp == TimeStamp
-      ][, MaxTimeStamp := NULL][ifDeleted == FALSE][
-        , GoTo := Map(f_, LAT, LNG, Name) %>% as.character()
-        ]
+      ][, MaxTimeStamp := NULL][ifDeleted == FALSE]
+  dt[, GoTo := Map(f_, LAT, LNG, Name) %>% as.character()]
   tmp <- colnames(dt)[colnames(dt) != "GoTo"]
   dt[, c("GoTo", tmp), with = FALSE][]
 }
