@@ -124,5 +124,4 @@ function(input, output, session) {
       openxlsx::write.xlsx(dt, file, as.Table = FALSE)
     }
   )
-  hide(id = "loading-content", anim = TRUE, animType = "fade", time = 1.5)    
 }

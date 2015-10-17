@@ -13,3 +13,10 @@ $(document).on("click", ".go-map", function(e) {
     nonce: Math.random()
   });
 });
+// better loading panel
+$(document).ready(function(){
+  $("#loading-content").show();
+});
+$(window).load(function(){
+  $("#loading-content").fadeOut(1500);
+});

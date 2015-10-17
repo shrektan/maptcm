@@ -18,7 +18,7 @@ navbarPage(
         br(),
         br(),
         h2("Loading...")
-      ),
+      ) %>% shinyjs::hidden(),
       leafletOutput("map", width = "100%", height = "100%"),
       # Shiny versions prior to 0.11 should use class="modal" instead.
       absolutePanel(
