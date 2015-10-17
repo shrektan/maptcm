@@ -40,11 +40,18 @@ navbarPage(
       ) %>% shinyjs::hidden(),
       tags$div(
         id = "cite",
-        'Data provided by ',
-        tags$em('Yang, Zheng')
-      ),
-      HTML(
-        'Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>             is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>'
+        p(
+          'Data provided by ',
+          tags$em('Yang, Zheng.'),
+          "Powered by ",
+          tags$a(href = "http://shiny.rstudio.com", target = "_blank", "Shiny"),
+          "."
+        ),
+        p(
+          HTML(
+            'Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>             is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>'
+          )
+        )
       )
     )
   ),
