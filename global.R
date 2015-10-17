@@ -106,10 +106,12 @@ backup_data <- function() {
 
 # update data
 update_data <- function(r) {
+  r <- rbindlist(list(data()[FALSE], r), fill = TRUE)
   # backup
   backup_data()
   # write csv
-  write_csv(r[, colnames(data()), with = FALSE], 
+  cns <- readr::read_csv("data/data.csv", n_max = 0) %>% colnames()
+  write_csv(r[, cns, with = FALSE], 
             "data/data.csv", 
             append = file.exists("data/data.csv"))
   # return

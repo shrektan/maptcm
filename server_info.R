@@ -103,9 +103,10 @@ observeEvent(
         dplyr::mutate(
           ifDeleted = TRUE,
           TimeStamp = Sys.time() %>% lubridate::with_tz("UTC")
-        )
+        ) %>%
+        dplyr::select(-GoTo)
       # add new
-      r <- rbindlist(list(r, new), use.names = TRUE)
+      r <- rbindlist(list(r, new), use.names = TRUE, fill = TRUE)
       update_data(r)
       # reload info
       reload_info(input$info_target)
@@ -117,7 +118,8 @@ observeEvent(
         dplyr::mutate(
           ifDeleted = TRUE,
           TimeStamp = Sys.time() %>% lubridate::with_tz("UTC")
-        )
+        ) %>%
+        dplyr::select(-GoTo)
       update_data(r)
     }
   )
