@@ -71,8 +71,7 @@ navbarPage(
     tags$head(# Include our custom CSS
       includeCSS("styles.css"),
       includeScript("gomap.js"),
-      shinyjs::useShinyjs(),
-      inlineCSS(loading_css)),
+      shinyjs::useShinyjs()),
     .,
     tags$a(
       href = "https://github.com/shrektan/CMUnivMap",

@@ -48,3 +48,16 @@ h1, h2, h3, h4 { font-weight: 400; }
 .leaflet-container {
   background-color: white !important;
 }
+
+/* loading css */
+#loading-content {
+  position: absolute;
+  background: #000000;
+  opacity: 0.9;
+  left: 0;
+  right: 0;
+  height: 100%;
+  text-align: center;
+  color: #FFFFFF;
+  z-index:10000;
+}
