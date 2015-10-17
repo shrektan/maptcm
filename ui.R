@@ -2,7 +2,6 @@
 
 # new ui ------------------------------------------------------------------
 
-
 navbarPage(
   title = "Map of TCM",
   id = "nav",
@@ -11,11 +10,6 @@ navbarPage(
     icon = icon("globe"),
     div(
       class = "outer",
-      tags$head(# Include our custom CSS
-        includeCSS("styles.css"),
-        includeScript("gomap.js"),
-        shinyjs::useShinyjs(),
-        inlineCSS(loading_css)),
       # Loading message
       div(
         id = "loading-content",
@@ -74,6 +68,11 @@ navbarPage(
   )
 ) %>% 
   tagList(
+    tags$head(# Include our custom CSS
+      includeCSS("styles.css"),
+      includeScript("gomap.js"),
+      shinyjs::useShinyjs(),
+      inlineCSS(loading_css)),
     .,
     tags$a(
       href = "https://github.com/shrektan/CMUnivMap",
