@@ -19,7 +19,7 @@ function(input, output, session) {
   # data table
   output$data <- renderDataTable({
     r <- data()
-    DT::datatable(r, options = list(scrollX = TRUE), 
+    DT::datatable(r, 
                   escape = c(-2), 
                   class = "hover row-border nowrap stripe",
                   selection = "none")

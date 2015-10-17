@@ -54,7 +54,12 @@ navbarPage(
     "Data explorer",
     icon = icon("search"),
     hr(),
-    dataTableOutput("data")
+    fluidRow(
+      div(
+        style = "overflow-x:auto",
+        dataTableOutput("data")
+      )
+    )
   ),
   tabPanel(
     "Info Maintain",
