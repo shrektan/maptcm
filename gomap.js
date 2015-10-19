@@ -5,7 +5,6 @@ $(document).on("click", ".go-map", function(e) {
   var lat = $el.data("lat");
   var long = $el.data("long");
   var name = $el.data("name");
-  $($("#nav a")[0]).tab("show");
   Shiny.onInputChange("goto", {
     lat: lat,
     lng: long,
@@ -24,8 +23,8 @@ $(document).ready(function(){
   $("#loading-content").show();
 });
 
+
 $(window).load(function(){
   $("div.outer").css("top", $("div.container").height());
   $("#loading-content").fadeOut(1500);
 });
-

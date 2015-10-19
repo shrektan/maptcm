@@ -53,11 +53,11 @@ function(input, output, session) {
   show_popup <- function(name, lat, lng) {
     r <- data() %>% dplyr::filter(Name == name)
     content <- as.character(tagList(
-     p(tags$span(dt_col[J("Name"), CNEN], ": ", style = "font-weight:bold;"),
+     p(tags$span(dt_col[J("Name"), CNEN], ": "),
        br(), br(), r$Name, br(), r$NameEN),
-     p(tags$span(dt_col[J("Address"), CNEN], ": ", style = "font-weight:bold;"), 
+     p(tags$span(dt_col[J("Address"), CNEN], ": "), 
        r$Address),
-     p(tags$span(dt_col[J("Website"), CNEN], ": ", style = "font-weight:bold;"),
+     p(tags$span(dt_col[J("Website"), CNEN], ": "),
        a(r$Website, href = r$Website, target = "_blank"))
     ))
     leafletProxy("map") %>% addPopups(lng, lat, content, layerId = name)
@@ -92,6 +92,8 @@ function(input, output, session) {
   observe({
     if (is.null(input$goto)) return()
     isolate({
+      updateNavbarPage(session, "nav", "Map")
+      Sys.sleep(0.01)
       map <- leafletProxy("map")
       map %>% clearPopups()
       dist <- 0.3
@@ -102,8 +104,6 @@ function(input, output, session) {
       map %>% setView(lng = 0, lat = 30, zoom = 2)
       Sys.sleep(0.01)
       map %>% fitBounds(lng - dist, lat - dist, lng + dist, lat + dist)
-      Sys.sleep(0.01)
-      updateNavbarPage(session, "nav", "Map")
     })
   })
   

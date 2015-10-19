@@ -56,7 +56,7 @@ navbarPage(
     hr(),
     fluidRow(
       div(
-        style = "overflow-x:auto",
+        class = "dt",
         dataTableOutput("data")
       )
     )
