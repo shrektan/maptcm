@@ -25,12 +25,5 @@ $(document).ready(function(){
 
 $(window).load(function(){
   $("#loading-content").fadeOut(1500);
-  $("#showmore").bind("click", function(){
-     if ($("#detailed_info").is(":visible")) {
-       $("#detailed_info").slideUp(500);
-     } else {
-       $("#detailed_info").slideDown(500);
-     }
-  });
   $("div.outer").css("top", $("div.container").height());
 });

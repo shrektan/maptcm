@@ -30,7 +30,7 @@ function(input, output, session) {
     leaflet() %>% 
       addTiles(
         urlTemplate = "https://api.mapbox.com/v4/shrektan.ciffhrg2x8fe2suknjq6qv5g7/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoic2hyZWt0YW4iLCJhIjoiY2lmZmhyaTR3OGczeHNtbHhyb2Rjb2cwcSJ9.c2vjzcma6a24uYuUpyXUWQ",
-        attribution = 'Maps by <a href="http://www.mapbox.com/">Mapbox</a>'
+        attribution = 'Maps by <a href="http://www.mapbox.com/" target = "_blank">Mapbox</a>'
       ) %>% 
       setView(lng = 0, lat = 30, zoom = 2)
   })
@@ -76,6 +76,8 @@ function(input, output, session) {
         tagList(r)
       })
     })
+    # show
+    shinyjs::show(id = "controls", anim = TRUE, animType = "slide", time = 1.0)
   }
   
   # When map is clicked, show a popup with city info
@@ -91,7 +93,7 @@ function(input, output, session) {
     if (is.null(input$goto)) return()
     isolate({
       updateNavbarPage(session, "nav", "Map")
-      Sys.sleep(0.01)
+      # Sys.sleep(0.01)
       map <- leafletProxy("map")
       map %>% clearPopups()
       dist <- 0.3
@@ -107,7 +109,7 @@ function(input, output, session) {
   
   observeEvent(
     input$back, {
-      shinyjs::hide(id = "controls", anim = TRUE, animType = "slide", time = 0.5)
+      shinyjs::hide(id = "controls", anim = TRUE, animType = "slide", time = 1)
       leafletProxy("map") %>% 
         clearPopups() %>%
         setView(lng = 0, lat = 30, zoom = 2)

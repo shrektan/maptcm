@@ -67,6 +67,10 @@ h1, h2, h3, h4 { font-weight: 400; }
   font-weight:bold;
 }
 
+#back {
+  zoom: 1.5;
+}
+
 #popupShowMore {
   display:block;
   text-align:center;

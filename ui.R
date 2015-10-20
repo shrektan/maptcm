@@ -21,12 +21,13 @@ navbarPage(
         h2("Loading...")
       ) %>% shinyjs::hidden(),
       leafletOutput("map", width = "100%", height = "100%"),
-      # Shiny versions prior to 0.11 should use class="modal" instead.
-      tags$a(id = "showmore", href = "#", title = "Show More", icon("globe")),
       absolutePanel(
         id = "controls", class = "panel panel-default", fixed = TRUE,
         draggable = TRUE, top = 60, left = "auto", right = 10, bottom = "auto",
         width = 350, height = "auto",
+        absolutePanel(
+          top = 8, left = 20, actionLink("back", NULL, icon = icon("globe"))
+        ),
         hr(),
         uiOutput("detailed_info"),
         hr()
