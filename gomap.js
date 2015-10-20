@@ -16,6 +16,11 @@ $(document).on("click", ".go-map", function(e) {
 // resize the window size of the map
 $(window).resize(function(){
   $("div.outer").css("top", $("div.container").height());
+  if ($(window).width() <= 940) {
+    $("#github_ribbon").hide();
+  } else {
+    $("#github_ribbon").show();
+  }
 });
 
 // better loading panel
@@ -26,4 +31,9 @@ $(document).ready(function(){
 $(window).load(function(){
   $("#loading-content").fadeOut(1500);
   $("div.outer").css("top", $("div.container").height());
+   if ($(window).width() <= 940) {
+    $("#github_ribbon").hide();
+  } else {
+    $("#github_ribbon").show();
+  }
 });

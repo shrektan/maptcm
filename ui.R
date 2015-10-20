@@ -89,6 +89,7 @@ navbarPage(
     ),
     .,
     tags$a(
+      id = "github_ribbon",
       href = "https://github.com/shrektan/CMUnivMap",
       target = "_blank",
       tags$img(
