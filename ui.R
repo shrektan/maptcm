@@ -1,10 +1,11 @@
 
 
 # new ui ------------------------------------------------------------------
-
 navbarPage(
   title = "Map of TCM",
   id = "nav",
+  # inverse = TRUE,
+  theme = shinytheme("Cosmo"),
   tabPanel(
     "Map",
     icon = icon("globe"),
@@ -21,13 +22,11 @@ navbarPage(
       ) %>% shinyjs::hidden(),
       leafletOutput("map", width = "100%", height = "100%"),
       # Shiny versions prior to 0.11 should use class="modal" instead.
+      tags$a(id = "showmore", href = "#", title = "Show More", icon("globe")),
       absolutePanel(
         id = "controls", class = "panel panel-default", fixed = TRUE,
         draggable = TRUE, top = 60, left = "auto", right = 10, bottom = "auto",
         width = 350, height = "auto",
-        absolutePanel(
-          bottom = 5, right = 5, actionLink("back", NULL, icon = icon("globe"))
-        ),
         hr(),
         uiOutput("detailed_info"),
         hr()
@@ -55,9 +54,12 @@ navbarPage(
     icon = icon("search"),
     hr(),
     fluidRow(
-      div(
-        class = "dt",
-        dataTableOutput("data")
+      column(
+        width = 12, 
+        div(
+          class = "dt",
+          dataTableOutput("data")
+        )
       )
     )
   ),
@@ -73,16 +75,18 @@ navbarPage(
   )
 ) %>% 
   tagList(
-    tags$head(# Include our custom CSS
+    # Include our custom CSS
+    tags$head(
       includeCSS("styles.css"),
       includeScript("gomap.js"),
-      shinyjs::useShinyjs()),
+      shinyjs::useShinyjs()
+    ),
     .,
     tags$a(
       href = "https://github.com/shrektan/CMUnivMap",
       target = "_blank",
       tags$img(
-        style = "position: absolute; top: 0; right: 0; border: 0;z-index : 9999",
+        style = "position: absolute; top: 0; right: 0; border: 0;z-index : 5000",
         src = "https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67",
         alt = "Fork me on GitHub",
         `data-canonical-src` = "https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"

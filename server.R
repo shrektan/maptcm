@@ -61,9 +61,7 @@ function(input, output, session) {
        a(r$Website, href = r$Website, target = "_blank"))
     ))
     leafletProxy("map") %>% addPopups(lng, lat, content, layerId = name)
-    
     # detail info
-    shinyjs::show("controls")
     output$detailed_info <- renderUI({
       isolate({
         tmp <- data() %>% dplyr::filter(Name == name) %>% 
