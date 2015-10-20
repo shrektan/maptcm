@@ -6,6 +6,7 @@ navbarPage(
   id = "nav",
   # inverse = TRUE,
   theme = shinytheme("cosmo"),
+  collapsible = TRUE,
   tabPanel(
     "Map",
     icon = icon("globe"),
