@@ -5,7 +5,7 @@ navbarPage(
   title = "Map of TCM",
   id = "nav",
   inverse = TRUE,
-  theme = shinytheme("cosmo"),
+  theme = shinytheme("spacelab"),
   collapsible = TRUE,
   tabPanel(
     "Map",
