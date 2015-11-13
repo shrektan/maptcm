@@ -103,7 +103,7 @@ function(input, output, session) {
     }
   )
   
-  source("server_info.R", local = TRUE)
+  # source("server_info.R", local = TRUE)
   
   output$download <- downloadHandler(
     filename = function() sprintf("map-data-%s.xlsx", format(Sys.time(), "%Y%m%d-%H%M%S")),

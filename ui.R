@@ -4,7 +4,7 @@
 navbarPage(
   title = "Map of TCM",
   id = "nav",
-  # inverse = TRUE,
+  inverse = TRUE,
   theme = shinytheme("cosmo"),
   collapsible = TRUE,
   tabPanel(
@@ -68,16 +68,16 @@ navbarPage(
         )
       )
     )
-  ),
-  tabPanel(
-    "Info Maintain",
-    icon = icon("info"),
-    source("ui_info.R", local = TRUE)$value
-  ),
-  tabPanel(
-    "Download Data",
-    icon = icon("cloud-download"),
-    p("Click here to ", downloadLink("download", "download data"), ".")
+  # ),
+  # tabPanel(
+    # "Info Maintain",
+    # icon = icon("info"),
+    # source("ui_info.R", local = TRUE)$value
+  # ),
+  # tabPanel(
+    # "Download Data",
+    # icon = icon("cloud-download"),
+    # p("Click here to ", downloadLink("download", "download data"), ".")
   )
 ) %>% 
   tagList(
