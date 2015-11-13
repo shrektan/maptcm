@@ -1,3 +1,17 @@
+# update info input candidates
+observe({
+  updateSelectizeInput(session, "info_target",
+                       choices = data()[, Name])
+  updateSelectizeInput(session, "info_class",
+                       choices = data()[, Class])
+  updateSelectizeInput(session, "info_class_en",
+                       choices = data()[, ClassEN])
+  updateSelectizeInput(session, "info_area",
+                       choices = data()[, Area])
+  updateSelectizeInput(session, "info_country",
+                       choices = data()[, Country])
+})
+
 # info maintenance
 # define reset_info
 reset_info <- function() {
