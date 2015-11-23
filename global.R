@@ -1,6 +1,7 @@
 
 # global setting ----------------------------------------------------------
 
+# options(shiny.autoreload = TRUE)
 options(stringsAsFactors = FALSE)
 library(magrittr)
 library(data.table)
