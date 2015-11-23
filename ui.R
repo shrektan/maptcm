@@ -37,19 +37,10 @@ navbarPage(
         id = "cite",
         p(
           'Data provided by ',
-          tags$em('Yang, Zheng.'),
+          tags$em('Tsinghua university, Xiaomei Xu, Zheng Yang.'),
           "Powered by ",
           tags$a(href = "http://shiny.rstudio.com", target = "_blank", "Shiny"),
           "."
-        ),
-        p(
-          HTML(
-            'Icons made by <a href="http://www.freepik.com" 
-            title="Freepik">Freepik</a> from 
-            <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> 
-            is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"
-            title="Creative Commons BY 3.0">CC BY 3.0</a>'
-          )
         )
       )
     )
@@ -68,17 +59,19 @@ navbarPage(
         )
       )
     )
-  # ),
-  # tabPanel(
-    # "Info Maintain",
-    # icon = icon("info"),
-    # source("ui_info.R", local = TRUE)$value
-  # ),
+  ),
+  tabPanel(
+    "Info Maintain",
+    icon = icon("info"),
+    br(),
+    p("If you find the info is wrong or you want to add new info, ",
+      "please contact ", tags$a(href = "mailto:maptcm@126.com", "maptcm@126.com", "."))
+  )
   # tabPanel(
     # "Download Data",
     # icon = icon("cloud-download"),
     # p("Click here to ", downloadLink("download", "download data"), ".")
-  )
+  # )
 ) %>% 
   tagList(
     # Include our custom CSS
