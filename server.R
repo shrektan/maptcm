@@ -23,16 +23,17 @@ function(input, output, session) {
   })
   
   def_icons <- iconList(
-    College = makeIcon("icons/university.svg", "icons/university.svg", 12 * 1.5, 12 * 1.5),
-    Hospital = makeIcon("icons/hospital.svg", "icons/hospital.svg", 12 * 1.5, 12 * 1.5),
-    Association = makeIcon("icons/Association.svg", "icons/Association.svg", 12 * 1.5, 12 * 1.5),
-    Society = makeIcon("icons/Society.svg", "icons/Society.svg", 12 * 1.5, 12 * 1.5)
+    College = makeIcon("icons/university.svg", "icons/university.svg", 12 * 2.5, 12 * 2.5),
+    Hospital = makeIcon("icons/hospital.svg", "icons/hospital.svg", 12 * 2.5, 12 * 2.5),
+    Association = makeIcon("icons/Association.svg", "icons/Association.svg", 12 * 2.5, 12 * 2.5),
+    Society = makeIcon("icons/Society.svg", "icons/Society.svg", 12 * 2.5, 12 * 2.5)
   )
   
   observe({
     leafletProxy("map", data = data()) %>%
       clearShapes() %>%
-      addMarkers(~LNG, ~LAT, layerId = ~Name, icon = ~def_icons[ClassEN])
+      addMarkers(~LNG, ~LAT, layerId = ~Name, icon = ~def_icons[ClassEN], 
+                 clusterOptions = markerClusterOptions(showCoverageOnHover = FALSE))
   })
   
  
