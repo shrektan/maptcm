@@ -1,108 +1,108 @@
-NameCN,Name,Class,Country,City,Website,Address,Lon,Lat
+NameCN,Name,Class,Country,City,Website,Address,Lon,Lat,ifDeleted,TimeStamp
 奥地利针灸学会（奥地利推拿疗法工作组）,Austrian Acupuncture Society (ASS) and Austrian Workgroup of Tuina-Therapy,Association,Austria,Wien,www.akupunktur.at,"Österreichische Gesellschaft für Akupunktur
 Neurologisches Zentrum Rosenhügel, Direktionsgebäude
 Riedelgasse 5
-A-1130 Wien",16.281113,48.1623083
-澳洲中医针灸研究会,Australian Traditional Chinese Medicine & Acupuncture Association Inc.,Association,Austrialia,"Coorparoo, DC",www.acupuncture.org.au,PO Box 1635，Coorparoo DC  QLD  4151,153.0589126,-27.5005804
-澳洲全国中医药针灸学会联合会,Federation of Chinese Medicine & Acupuncture Societies of Australia LTD,Federation,Austrialia,Melbourne,www.fcma.org.au,"Glen Waverley, VIC 3150；Australia",145.164812,-37.8785429
-澳大利亚东方医学院,Autralian College of Eastern Medicine,College,Austrialia,"Sydney, NSW;Lismore, NSW;Bellingen, NSW;Rockhampton",www.orientalmedicine.com.au,"18 Greenhills Drive, Goonellabah NSW 2480",153.345793,-28.808938
-加拿大中医药针灸学会,Chinese Medicine and Acupuncture Association of Canada,Association,Canada,Ontario,www.cmaac.ca,"154 Wellington St., London, Ontario, N6B 2K8",-81.2412746,42.9773923
-加拿大安大略中医学院,Ontario College of Traditional Chinese Medicine,College,Canada,Markham,www.octcm.com,"7100 Warden Avenue, Suite 1A, Markham L3R 8B5",-79.3265647,43.8231149
-卑诗省注册中医师公会,British Columbia Qualified Acupuncturists and T.C.M. Practitioners Association,Association,Canada,Richmond,www.qatcma.org,"5900 No 3 Rd #300，Richmond, BC V6X 3P7，加拿大",-123.1360617,49.1705372
+A-1130 Wien",16.281113,48.1623083,FALSE,2015-11-24T14:09:40Z
+澳洲中医针灸研究会,Australian Traditional Chinese Medicine & Acupuncture Association Inc.,Association,Austrialia,"Coorparoo, DC",www.acupuncture.org.au,PO Box 1635，Coorparoo DC  QLD  4151,153.0589126,-27.5005804,FALSE,2015-11-24T14:09:40Z
+澳洲全国中医药针灸学会联合会,Federation of Chinese Medicine & Acupuncture Societies of Australia LTD,Federation,Austrialia,Melbourne,www.fcma.org.au,"Glen Waverley, VIC 3150；Australia",145.164812,-37.8785429,FALSE,2015-11-24T14:09:40Z
+澳大利亚东方医学院,Autralian College of Eastern Medicine,College,Austrialia,"Sydney, NSW;Lismore, NSW;Bellingen, NSW;Rockhampton",www.orientalmedicine.com.au,"18 Greenhills Drive, Goonellabah NSW 2480",153.345793,-28.808938,FALSE,2015-11-24T14:09:40Z
+加拿大中医药针灸学会,Chinese Medicine and Acupuncture Association of Canada,Association,Canada,Ontario,www.cmaac.ca,"154 Wellington St., London, Ontario, N6B 2K8",-81.2412746,42.9773923,FALSE,2015-11-24T14:09:40Z
+加拿大安大略中医学院,Ontario College of Traditional Chinese Medicine,College,Canada,Markham,www.octcm.com,"7100 Warden Avenue, Suite 1A, Markham L3R 8B5",-79.3265647,43.8231149,FALSE,2015-11-24T14:09:40Z
+卑诗省注册中医师公会,British Columbia Qualified Acupuncturists and T.C.M. Practitioners Association,Association,Canada,Richmond,www.qatcma.org,"5900 No 3 Rd #300，Richmond, BC V6X 3P7，加拿大",-123.1360617,49.1705372,FALSE,2015-11-24T14:09:40Z
 全加中医药针灸协会,The Canadian Society of Chinese Medicine and Acupuncture,Society,Canada,Ontario,www.tcmcanada.org,"CSCMA Office
 245 Fairview Mall Drive Unit 402
 Toronto, Ontario
 M2J 4T1
-CANADA",-79.3419053,43.7797481
-卑诗省中医针灸师联合会,United Acupuncutrists & TCM Association of British Columbia,Association,Canada,Markham,www.uaabc.com/,"7100 Warden Avenue, Suite 1A,Markham, Ontario, Canada L3R 8B5",-79.3265647,43.8231149
+CANADA",-79.3419053,43.7797481,FALSE,2015-11-24T14:09:40Z
+卑诗省中医针灸师联合会,United Acupuncutrists & TCM Association of British Columbia,Association,Canada,Markham,www.uaabc.com/,"7100 Warden Avenue, Suite 1A,Markham, Ontario, Canada L3R 8B5",-79.3265647,43.8231149,FALSE,2015-11-24T14:09:40Z
 捷克中国生物学协会,Czechn SinoBiology Society,Society,Czech republic,Prague,www.tcm.cz/tcm/english/,"Revoluční 20
-Prague 1",14.4282317,50.0912388
+Prague 1",14.4282317,50.0912388,FALSE,2015-11-24T14:09:40Z
 法国亚洲文化学院,Ars Asiatica,Association,France,Paris,www.arsasiatica.fr,"7 rue Fernand Widal 
-75013 Paris",2.3607904,48.8184064
+75013 Paris",2.3607904,48.8184064,FALSE,2015-11-24T14:09:40Z
 法国全欧洲中医药专家联合会,Pan-European Federation of Consultants in Chinese Medicine Specialist,Federation,France,Paris,www.pefots.com,"Geldersekade 87A
 Amsterdam
 Noord - Holland
 Netherlands
-1011 EL",4.9017837,52.3742426
+1011 EL",4.9017837,52.3742426,FALSE,2015-11-24T14:09:40Z
 德国传统针灸中医学会,Society for Classical Acupuncture and Traditional Chinese Medicine,Association,Germany,Sekretariat,www.agtcm.de,"Sekretariat
 Wisbacher Straße 1
-83435 Bad Reichenhall",12.88103,47.72536
+83435 Bad Reichenhall",12.88103,47.72536,FALSE,2015-11-24T14:09:40Z
 欧洲针灸中医药学会,European Academy of Accupuncture and Traditional Chinese Medicine,Academy,Germany,Munich,www.eatcm.de,"Oselstrasse 25 A
 81245 Munich
-Germany",11.46028,48.15357
-欧洲东方医学联盟,European Federation for Oriental Medicine,Federation,Germany,Eigenbilzen,www.eufom.com,Kerkhoflaan 19 3740 Eigenbilzen,5.5722727,50.8781536
-德国魁茨汀中医医院,TCM-Klinik Kotzting,Hospital,Germany,Ludwigstraße,www.tcm-klinik-koetzting.de/tcmen/index.php," Ludwigstraße 2, 93444 Bad Kötzting, 德国",12.8561539,49.1741332
-日本中医薬研究会,Japan Association of  Study of Tradtional Chinese Medicine,Association,Japan,Tokyo,www.chuiyaku.or.jp,"2 Chome-9-4 Nihonbashi，Chuo, Tokyo 103-0027，日本",139.7751387,35.6813049
-日本本草薬膳学院,Japan Honzou Medicinal Food College,College,Japan,Tokyo,www.honzou.jp,東京都中央区日本橋兜町22番6号,139.7757637,35.6785414
-日本北京中医药大学日本校,"Beijing University of Chinese Medicine, Japan",College,Japan,Tokyo,www.jbucm.com,"1 Chome-8-2 Hongo，Bunkyo, Tokyo 113-0033，日本",139.7562835,35.7046657
-全日本中医药学会,All Japan Chinese Medicine Association,Association,Japan,Tokyo,www.kc-u.jp,東京都渋谷区恵比寿1-8-1,139.7100727,35.6479208
-日本中医药联合会,Chinese Medicine Academic Society Federation,Federation,Japan,Tokyo,www.sekaichuiyaku.org,東京都高輪4-20-16　セントリバー高輪201,139.7350358,35.6258838
-日本国际药膳师会,Japan International Medicinal Food Practitioners´ Association,Association,Japan,Tokyo,www.yakuzenshi.jp,東京都中央区日本橋兜町22番6号2Ｆ,139.7757637,35.6785414
-大韩针灸学会,The Korean Acupuncture and Moxibustion Society,Association,Korea,Seoul,www.acumoxa.or.kr,"1140-4 Jegi-dong，Dongdaemun-gu, Seoul，韩国",127.0366355,37.5789662
-大韩针灸师协会,The Korea Acupuncture-Moxibustion Society,Association,Korea,Seoul,www.chim.or.kr,"1115-15 Jegi-dong，Dongdaemun-gu, Seoul，韩国",127.0370804,37.5797538
-大韩韩医学会,The Society of Korean Medicine,Association,Korea,Seoul,www.skoms.org,"The Society of Korean Medicine 3F, 91, Heojun-ro, Gangseo-gu, Seoul, Korea",126.8522684,37.5663665
-大韩中医协会,Traditional Chinese Medicine of Korea Association,Association,Korea,Seoul,www.tcmkorea.com/Web/main/,서울특별시 동대문구 약령중앙로 19-19 ,127.0365196,37.5804889
-马来西亚中医师暨针灸联合总会,Federation of Chinese Physicians and Acupuncuturists Associations of Malaysia,Association,Malaysia,Kuala Lumpur,www.fcpaam.org.my,"780A, Jalan Sentul, 51000 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, 马来西亚",101.6924085,3.179273
-马来西亚华人医药总会,Chinese Physicians & Medicine Dealers Associations of Malaysia,Association,Malaysia,Kuala Lumpur,www.fcpmdam.com,"No. 106-2 & 107-2, Jalan 1,Pusat Niaga Batu Caves, Batu Caves,68100, Selangor，Malaysia",23.0729655,42.0146945
+Germany",11.46028,48.15357,FALSE,2015-11-24T14:09:40Z
+欧洲东方医学联盟,European Federation for Oriental Medicine,Federation,Germany,Eigenbilzen,www.eufom.com,Kerkhoflaan 19 3740 Eigenbilzen,5.5722727,50.8781536,FALSE,2015-11-24T14:09:40Z
+德国魁茨汀中医医院,TCM-Klinik Kotzting,Hospital,Germany,Ludwigstraße,www.tcm-klinik-koetzting.de/tcmen/index.php," Ludwigstraße 2, 93444 Bad Kötzting, 德国",12.8561539,49.1741332,FALSE,2015-11-24T14:09:40Z
+日本中医薬研究会,Japan Association of  Study of Tradtional Chinese Medicine,Association,Japan,Tokyo,www.chuiyaku.or.jp,"2 Chome-9-4 Nihonbashi，Chuo, Tokyo 103-0027，日本",139.7751387,35.6813049,FALSE,2015-11-24T14:09:40Z
+日本本草薬膳学院,Japan Honzou Medicinal Food College,College,Japan,Tokyo,www.honzou.jp,東京都中央区日本橋兜町22番6号,139.7757637,35.6785414,FALSE,2015-11-24T14:09:40Z
+日本北京中医药大学日本校,"Beijing University of Chinese Medicine, Japan",College,Japan,Tokyo,www.jbucm.com,"1 Chome-8-2 Hongo，Bunkyo, Tokyo 113-0033，日本",139.7562835,35.7046657,FALSE,2015-11-24T14:09:40Z
+全日本中医药学会,All Japan Chinese Medicine Association,Association,Japan,Tokyo,www.kc-u.jp,東京都渋谷区恵比寿1-8-1,139.7100727,35.6479208,FALSE,2015-11-24T14:09:40Z
+日本中医药联合会,Chinese Medicine Academic Society Federation,Federation,Japan,Tokyo,www.sekaichuiyaku.org,東京都高輪4-20-16　セントリバー高輪201,139.7350358,35.6258838,FALSE,2015-11-24T14:09:40Z
+日本国际药膳师会,Japan International Medicinal Food Practitioners´ Association,Association,Japan,Tokyo,www.yakuzenshi.jp,東京都中央区日本橋兜町22番6号2Ｆ,139.7757637,35.6785414,FALSE,2015-11-24T14:09:40Z
+大韩针灸学会,The Korean Acupuncture and Moxibustion Society,Association,Korea,Seoul,www.acumoxa.or.kr,"1140-4 Jegi-dong，Dongdaemun-gu, Seoul，韩国",127.0366355,37.5789662,FALSE,2015-11-24T14:09:40Z
+大韩针灸师协会,The Korea Acupuncture-Moxibustion Society,Association,Korea,Seoul,www.chim.or.kr,"1115-15 Jegi-dong，Dongdaemun-gu, Seoul，韩国",127.0370804,37.5797538,FALSE,2015-11-24T14:09:40Z
+大韩韩医学会,The Society of Korean Medicine,Association,Korea,Seoul,www.skoms.org,"The Society of Korean Medicine 3F, 91, Heojun-ro, Gangseo-gu, Seoul, Korea",126.8522684,37.5663665,FALSE,2015-11-24T14:09:40Z
+大韩中医协会,Traditional Chinese Medicine of Korea Association,Association,Korea,Seoul,www.tcmkorea.com/Web/main/,서울특별시 동대문구 약령중앙로 19-19 ,127.0365196,37.5804889,FALSE,2015-11-24T14:09:40Z
+马来西亚中医师暨针灸联合总会,Federation of Chinese Physicians and Acupuncuturists Associations of Malaysia,Association,Malaysia,Kuala Lumpur,www.fcpaam.org.my,"780A, Jalan Sentul, 51000 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, 马来西亚",101.6924085,3.179273,FALSE,2015-11-24T14:09:40Z
+马来西亚华人医药总会,Chinese Physicians & Medicine Dealers Associations of Malaysia,Association,Malaysia,Kuala Lumpur,www.fcpmdam.com,"No. 106-2 & 107-2, Jalan 1,Pusat Niaga Batu Caves, Batu Caves,68100, Selangor，Malaysia",23.0729655,42.0146945,FALSE,2015-11-24T14:09:40Z
 荷兰医师针灸师协会,Nederlandse Artsen Acupunctuur Vereniging,Association,Netherland,Harlingen,www.acupunctuur.com,"NAAV, Nederlandse Artsen Acupunctuur Vereniging
 
 Zuidoostersingel 13
 
-8861 GB Harlingen",5.4248486,53.1728266
+8861 GB Harlingen",5.4248486,53.1728266,FALSE,2015-11-24T14:09:40Z
 荷兰中医药学会,Association of TCM in the Netherlands,Association,Netherland,Wageningen,www.zhong.nl,"Salverdaplein 15
-6701 DB  Wageningen",5.664467,51.9652778
-欧洲传统中医学会,European Traditional Chinese Medicine Association,Association,Netherlands,Utrecht,www.etcma.org,"Albert de Vos Servaasbolwerk 28,3512 NK Utrecht",5.1278506,52.0861651
+6701 DB  Wageningen",5.664467,51.9652778,FALSE,2015-11-24T14:09:40Z
+欧洲传统中医学会,European Traditional Chinese Medicine Association,Association,Netherlands,Utrecht,www.etcma.org,"Albert de Vos Servaasbolwerk 28,3512 NK Utrecht",5.1278506,52.0861651,FALSE,2015-11-24T14:09:40Z
 全欧洲中医药学会联合会,Pan European Federation of TCM Societies,Federation,Netherlands,Amsterdam,www.pefots.com,"Geldersekade 87A  
 Amsterdam  
 Noord - Holland  
 Netherlands  
-1011 EL",4.9017837,52.3742426
-新西兰注册针灸师学会,New Zealand Register of Acupuncturists INC.,Institute,New Zealand,Wellington,www.acupuncture.org.nz,"PO Box 14106, Kilbirnie, Wellington 6241",174.7741889,-41.2968821
+1011 EL",4.9017837,52.3742426,FALSE,2015-11-24T14:09:40Z
+新西兰注册针灸师学会,New Zealand Register of Acupuncturists INC.,Institute,New Zealand,Wellington,www.acupuncture.org.nz,"PO Box 14106, Kilbirnie, Wellington 6241",174.7741889,-41.2968821,FALSE,2015-11-24T14:09:40Z
 新西兰中医学院,New Zealand College of Chinese Medicine,College,New Zealand,Auckland,www.chinesemedicine.ac.nz,"Auckland branch
 321 Great South Road, Greenlane
 PO Box 17467 Auckland
-New Zealand",174.7633315,-36.8484597
+New Zealand",174.7633315,-36.8484597,FALSE,2015-11-24T14:09:40Z
 新西兰中医药针灸学会,The New Zealand Chinese Medicine and Acupuncture Society Inc.,Society,New Zealand,Auckland,www.chinesemedicine.org.nz,"PO Box 17318, Greenlane,
 Auckland 1546 
 Level 1, 321 Great South Road,
-Ellerslie, Auckland",174.799228,-36.8947876
-新加坡针灸协会,Singapore Acupuncture Association,Association,Singapore,Singapore,www.acupuncture.org.sg,Singapore Acupuncture Association  60 Paya Lebar Road #05-08,103.819836,1.352083
-新加坡中医药促进会,Singapore Association for promoting Chinese Medicines,Association,Singapore,Singapore,www.publiclinictcm.com.sg,芽笼9巷10号7层楼：10 Lor 9 Geylang Singapore 388758,103.8763201,1.313189
-新加坡中医师公会,The Singapore Chinese Physicians Association,Association,Singapore,Singapore,www.singaporetcm.com,640 Lor 4 Toa Payoh Lorong 4 Singapore 319522,103.8504801,1.3358865
-新加坡中医学院,Singapore College of Traditional Chinese Medicine,College,Singapore,Singapore,www.singaporetcm.edu.sg,640 Lor 4 Toa Payoh，Singapore 319522,103.8515662,1.3323521
-新加坡中华医学会,Society of Traditional Chinese Medicine (Singapore),Association,Singapore,Singapore,www.society-tcms.org,333 Kreta Ayer Rd，Singapore 080333,103.842723,1.2803199
+Ellerslie, Auckland",174.799228,-36.8947876,FALSE,2015-11-24T14:09:40Z
+新加坡针灸协会,Singapore Acupuncture Association,Association,Singapore,Singapore,www.acupuncture.org.sg,Singapore Acupuncture Association  60 Paya Lebar Road #05-08,103.819836,1.352083,FALSE,2015-11-24T14:09:40Z
+新加坡中医药促进会,Singapore Association for promoting Chinese Medicines,Association,Singapore,Singapore,www.publiclinictcm.com.sg,芽笼9巷10号7层楼：10 Lor 9 Geylang Singapore 388758,103.8763201,1.313189,FALSE,2015-11-24T14:09:40Z
+新加坡中医师公会,The Singapore Chinese Physicians Association,Association,Singapore,Singapore,www.singaporetcm.com,640 Lor 4 Toa Payoh Lorong 4 Singapore 319522,103.8504801,1.3358865,FALSE,2015-11-24T14:09:40Z
+新加坡中医学院,Singapore College of Traditional Chinese Medicine,College,Singapore,Singapore,www.singaporetcm.edu.sg,640 Lor 4 Toa Payoh，Singapore 319522,103.8515662,1.3323521,FALSE,2015-11-24T14:09:40Z
+新加坡中华医学会,Society of Traditional Chinese Medicine (Singapore),Association,Singapore,Singapore,www.society-tcms.org,333 Kreta Ayer Rd，Singapore 080333,103.842723,1.2803199,FALSE,2015-11-24T14:09:40Z
 新加坡同济医药研究院,Thong Chai Institute of Medical Research,Academy,Singapore,Singapore,www.tcimr.org.sg,"新加坡振瑞路
 五十号同济大厦 #01-02
-新加坡邮区 169874",103.819836,1.352083
-西班牙塞维利亚皇帝针灸学会,Associacion Cientifica de Medlcos Acupuntores De Sevilla,Association,Spain,Sevilla,www.acmas.com/AcmasHuangdi/,"Lugar Parque Residencial Oscar Carballo, 16，41018 Sevilla，西班牙",-5.9806139,37.3838341
-泰国华侨崇圣大学,Huachiew Chalermprakiet University,College,Thailand,Paknam,www.hcu.ac.th,"18/18 Bang Na-Trat Road, Bang Phli District, Samut Prakan 10540泰国",100.810943,13.5925946
-泰国中医药联合总会（原泰国中医协会）,The Federation of Chinese Medicine Societies of Thailand,Association,Thailand,Bangkok,www.thaimedicine.org,"84/63-64 CharoenKrung 80 Rd., Bangkorlaem Bangkok 10120",100.5239867,13.6949292
-针灸特许理疗协会,Acupuncture Association of Chartered Physiotherapists,Association,UK,Peterborough,www.aacp.org.uk,"ACCP Limited，Sefton House, Adam Court, Newark Road, Peterborough PE1 5PP",-0.2084141,52.5786965
-执业中医师协会,Association of Chinese medicine Practitioners,Association,UK,London,www.acmp-uk.org,"96 Cuckoo Dene, Hanwell, London W7 3DR",-0.3460305,51.5235113
-英国针灸委员会,The British Acupuncture Council,Association,UK,London,www.acupuncture.org.uk,63 Jeddo Road London W12 9HQ UK,-0.2486935,51.5043036
-英国针灸协会,The acupuncture society （of Professional Oriental Therapists),Society,UK,London,www.acupuncturesociety.org.uk,27 Cavendish Dr，Edgware HA8 7NR，英国,-0.2842015,51.6119909
-英国中医药学会,The Association of Traditional Chinese Medicine and Acupuncture (UK),Association,UK,London,www.atcm.co.uk,Suite 12 Brentano House Unit 5 The Exchange Brent Cross Gardens London NW4 3RJ,-0.2189554,51.5774621
-英格兰整体东方医学学会,Body harmonics Integrated Oriental Medicine Institute,Academy,UK,Gloucestershire,www.bodyharmonics.co.uk,"54 Fleckers Drive,Cheltenham,Gloucestershire,GL51 3BD",-2.1021626,51.8895846
+新加坡邮区 169874",103.819836,1.352083,FALSE,2015-11-24T14:09:40Z
+西班牙塞维利亚皇帝针灸学会,Associacion Cientifica de Medlcos Acupuntores De Sevilla,Association,Spain,Sevilla,www.acmas.com/AcmasHuangdi/,"Lugar Parque Residencial Oscar Carballo, 16，41018 Sevilla，西班牙",-5.9806139,37.3838341,FALSE,2015-11-24T14:09:40Z
+泰国华侨崇圣大学,Huachiew Chalermprakiet University,College,Thailand,Paknam,www.hcu.ac.th,"18/18 Bang Na-Trat Road, Bang Phli District, Samut Prakan 10540泰国",100.810943,13.5925946,FALSE,2015-11-24T14:09:40Z
+泰国中医药联合总会（原泰国中医协会）,The Federation of Chinese Medicine Societies of Thailand,Association,Thailand,Bangkok,www.thaimedicine.org,"84/63-64 CharoenKrung 80 Rd., Bangkorlaem Bangkok 10120",100.5239867,13.6949292,FALSE,2015-11-24T14:09:40Z
+针灸特许理疗协会,Acupuncture Association of Chartered Physiotherapists,Association,UK,Peterborough,www.aacp.org.uk,"ACCP Limited，Sefton House, Adam Court, Newark Road, Peterborough PE1 5PP",-0.2084141,52.5786965,FALSE,2015-11-24T14:09:40Z
+执业中医师协会,Association of Chinese medicine Practitioners,Association,UK,London,www.acmp-uk.org,"96 Cuckoo Dene, Hanwell, London W7 3DR",-0.3460305,51.5235113,FALSE,2015-11-24T14:09:40Z
+英国针灸委员会,The British Acupuncture Council,Association,UK,London,www.acupuncture.org.uk,63 Jeddo Road London W12 9HQ UK,-0.2486935,51.5043036,FALSE,2015-11-24T14:09:40Z
+英国针灸协会,The acupuncture society （of Professional Oriental Therapists),Society,UK,London,www.acupuncturesociety.org.uk,27 Cavendish Dr，Edgware HA8 7NR，英国,-0.2842015,51.6119909,FALSE,2015-11-24T14:09:40Z
+英国中医药学会,The Association of Traditional Chinese Medicine and Acupuncture (UK),Association,UK,London,www.atcm.co.uk,Suite 12 Brentano House Unit 5 The Exchange Brent Cross Gardens London NW4 3RJ,-0.2189554,51.5774621,FALSE,2015-11-24T14:09:40Z
+英格兰整体东方医学学会,Body harmonics Integrated Oriental Medicine Institute,Academy,UK,Gloucestershire,www.bodyharmonics.co.uk,"54 Fleckers Drive,Cheltenham,Gloucestershire,GL51 3BD",-2.1021626,51.8895846,FALSE,2015-11-24T14:09:40Z
 伦敦中医学院,"Chinese Medical Institute & Register, London",Academy,UK,London,www.cmir.org.uk,"101-105 Camden High Street, 
 London, 
-NW1 7JN",-0.140973,51.5367779
-英国针灸医学会,The British Medical of Acupuncture Sociation,Society,UK,"London,Norwich",www.medical-acupuncture.co.uk,"1.Royal London Hospital for Integrated Medicine (Formerly Royal London Homeopathic Hospital), 60 Great Ormond St, London, WC1N 3HR;2.BMAS Norwich:  BMAS House, 3 Winnington Court ,Norwich, Cheshire, CW8 1AQ",-2.517267,53.2607788
-英国中医药协会,Register of Herbs Chinese Medicine,Association,UK,Norwich,www.rchm.co.uk,"Office 6, 27 Castle Meadow，Norwich, NR1 3DS",1.2967209,52.6293153
+NW1 7JN",-0.140973,51.5367779,FALSE,2015-11-24T14:09:40Z
+英国针灸医学会,The British Medical of Acupuncture Sociation,Society,UK,"London,Norwich",www.medical-acupuncture.co.uk,"1.Royal London Hospital for Integrated Medicine (Formerly Royal London Homeopathic Hospital), 60 Great Ormond St, London, WC1N 3HR;2.BMAS Norwich:  BMAS House, 3 Winnington Court ,Norwich, Cheshire, CW8 1AQ",-2.517267,53.2607788,FALSE,2015-11-24T14:09:40Z
+英国中医药协会,Register of Herbs Chinese Medicine,Association,UK,Norwich,www.rchm.co.uk,"Office 6, 27 Castle Meadow，Norwich, NR1 3DS",1.2967209,52.6293153,FALSE,2015-11-24T14:09:40Z
 美国美洲中医学院,American College of Traditional Chinese Medicine,College,USA,San Francisco,www.actcm.edu,"Main Campus
 455 Arkansas Street
-San Francisco 94107",-122.3980237,37.7605354
+San Francisco 94107",-122.3980237,37.7605354,FALSE,2015-11-24T14:09:40Z
 美国传统中医药协会,American Association of TCM,Association,USA,San Francisco,www.actcm.edu,"Main Campus
 455 Arkansas Street
-San Francisco 94107",-122.3980237,37.7605354
+San Francisco 94107",-122.3980237,37.7605354,FALSE,2015-11-24T14:09:40Z
 宾夕法尼亚州执业针灸学会,Association for Professional Acupuncture in Pennsylvania,Association,USA,Glenside. PA,www.afpa.wildapricot.org,"The APA 
 P.O. Box 1081 
-Glenside, PA 19038",-75.1527928,40.0999077
-加利福尼亚州东方医学协会,California State Oriental Medical Association,Association,USA,San Anselmo,www.csomaonline.org,"CSOMA，PO Box 2410，San Anselmo, CA 94979-2410",-122.5602872,37.9703863
+Glenside, PA 19038",-75.1527928,40.0999077,FALSE,2015-11-24T14:09:40Z
+加利福尼亚州东方医学协会,California State Oriental Medical Association,Association,USA,San Anselmo,www.csomaonline.org,"CSOMA，PO Box 2410，San Anselmo, CA 94979-2410",-122.5602872,37.9703863,FALSE,2015-11-24T14:09:40Z
 美国加州中医药大学,FIVE BRANCHES UNIVERSITY,College,USA,Santa Cruz,www.fivebranches.edu,"聖塔克魯斯校區
 200 7th Avenue
-Santa Cruz , CA 95062",-121.9979862,36.9641577
-美国芝加哥中医中心,Chicago Acupuncture & Herbs Center,Association,USA,Chicago,www.herbsmed.org,"318 W. Adams St. Suite 200, Chicago IL 60606",-87.6361485,41.8794886
-美国医学针灸学会,American Academy of Medical Acupuncture,Academy,USA,Los Angeles,www.medicalacupuncture.org,"1970 E. Grand Ave.Suite 330.El Segundo, CA 90245",-118.3920118,33.9189974
-美国中医药协会(TCMA) 暨中国旅美中医院校同学会,Traditional Chinese Medicine Alumni & Association U.S.A,Association,USA,New York,www.tcmaa.org,"Mailing address: 108-A East 38th Street, New York City, New York, 10016 USA",-73.9788758,40.7491708
+Santa Cruz , CA 95062",-121.9979862,36.9641577,FALSE,2015-11-24T14:09:40Z
+美国芝加哥中医中心,Chicago Acupuncture & Herbs Center,Association,USA,Chicago,www.herbsmed.org,"318 W. Adams St. Suite 200, Chicago IL 60606",-87.6361485,41.8794886,FALSE,2015-11-24T14:09:40Z
+美国医学针灸学会,American Academy of Medical Acupuncture,Academy,USA,Los Angeles,www.medicalacupuncture.org,"1970 E. Grand Ave.Suite 330.El Segundo, CA 90245",-118.3920118,33.9189974,FALSE,2015-11-24T14:09:40Z
+美国中医药协会(TCMA) 暨中国旅美中医院校同学会,Traditional Chinese Medicine Alumni & Association U.S.A,Association,USA,New York,www.tcmaa.org,"Mailing address: 108-A East 38th Street, New York City, New York, 10016 USA",-73.9788758,40.7491708,FALSE,2015-11-24T14:09:40Z
 加州中医师联合总会,United California Practitioners of Chinese Medicine,Association,USA,"Cupertino, CA",www.ucpcm.californiatcm.com,"20432 silverado Ave., #4
-Cupertino, CA 95014",-122.0315027,37.3148886
+Cupertino, CA 95014",-122.0315027,37.3148886,FALSE,2015-11-24T14:09:40Z

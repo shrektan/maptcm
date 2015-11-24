@@ -32,7 +32,7 @@ function(input, output, session) {
   observe({
     leafletProxy("map", data = data()) %>%
       clearShapes() %>%
-      addMarkers(~LNG, ~LAT, layerId = ~Name, icon = ~def_icons[ClassEN], 
+      addMarkers(~Lon, ~Lat, layerId = ~Name, icon = ~def_icons[Class], 
                  clusterOptions = markerClusterOptions(showCoverageOnHover = FALSE))
   })
   
@@ -42,18 +42,25 @@ function(input, output, session) {
     r <- data() %>% dplyr::filter(Name == name)
     content <- as.character(tagList(
      p(tags$span(dt_col[J("Name"), CNEN], ": "),
-       br(), br(), r$Name, br(), r$NameEN),
+       br(), r$NameCN, "/", r$Name),
+     p(tags$span(dt_col[J("Class"), CNEN], ": "), 
+       r$Class),
+     p(tags$span(dt_col[J("Country"), CNEN], ": "), 
+       r$Country),
+     p(tags$span(dt_col[J("City"), CNEN], ": "), 
+       r$City),
      p(tags$span(dt_col[J("Address"), CNEN], ": "), 
-       r$Address),
+       br(), r$Address),
      p(tags$span(dt_col[J("Website"), CNEN], ": "),
-       a(r$Website, href = r$Website, target = "_blank"))
+       br(),
+       a(r$Website, href = paste0("http://", r$Website), target = "_blank"))
     ))
     leafletProxy("map") %>% addPopups(lng, lat, content, layerId = name)
     # detail info
     output$detailed_info <- renderUI({
       isolate({
         tmp <- data() %>% dplyr::filter(Name == name) %>% 
-          dplyr::select(-(LAT:TimeStamp), -GoTo)
+          dplyr::select(-(Lat:TimeStamp), -GoTo)
         tmp <- tmp[, which(!is.na(as.character(tmp))), with = FALSE]
         tmp_c <- dt_col[J(colnames(tmp)), CNEN]
         r <- vector("list", length(tmp_c))

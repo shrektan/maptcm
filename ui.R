@@ -61,7 +61,7 @@ navbarPage(
     )
   ),
   tabPanel(
-    "Info Maintain",
+    "Info",
     icon = icon("info"),
     br(),
     p("If you find the info is wrong or you want to add new info, ",

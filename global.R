@@ -67,7 +67,7 @@ load_data <- function(path) {
     tmp[, MaxTimeStamp := max(TimeStamp), by = Name][
       MaxTimeStamp == TimeStamp
       ][, MaxTimeStamp := NULL][ifDeleted == FALSE]
-  dt[, GoTo := Map(f_, LAT, LNG, Name) %>% as.character()]
+  dt[, GoTo := Map(f_, Lat, Lon, Name) %>% as.character()]
   tmp <- colnames(dt)[colnames(dt) != "GoTo"]
   dt[, c("GoTo", tmp), with = FALSE][]
 }
