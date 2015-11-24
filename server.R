@@ -32,8 +32,9 @@ function(input, output, session) {
   observe({
     leafletProxy("map", data = data()) %>%
       clearShapes() %>%
-      addMarkers(~Lon, ~Lat, layerId = ~Name, icon = ~def_icons[Class], 
-                 clusterOptions = markerClusterOptions(showCoverageOnHover = FALSE))
+      addMarkers(~Lon, ~Lat, layerId = ~Name, #icon = ~def_icons[Class], 
+                 clusterOptions = markerClusterOptions(showCoverageOnHover = FALSE,
+                                                       spiderfyOnMaxZoom = FALSE))
   })
   
  
@@ -56,23 +57,6 @@ function(input, output, session) {
        a(r$Website, href = paste0("http://", r$Website), target = "_blank"))
     ))
     leafletProxy("map") %>% addPopups(lng, lat, content, layerId = name)
-    # detail info
-    output$detailed_info <- renderUI({
-      isolate({
-        tmp <- data() %>% dplyr::filter(Name == name) %>% 
-          dplyr::select(-(Lat:TimeStamp), -GoTo)
-        tmp <- tmp[, which(!is.na(as.character(tmp))), with = FALSE]
-        tmp_c <- dt_col[J(colnames(tmp)), CNEN]
-        r <- vector("list", length(tmp_c))
-        for (i in 1:ncol(tmp)) {
-          r[[i]] <- p(tags$span(tmp_c[i], ":"),
-                      na2blank(as.character(tmp[, i, with = FALSE])))
-        }
-        tagList(r)
-      })
-    })
-    # show
-    shinyjs::show(id = "controls", anim = TRUE, animType = "slide", time = 1.0)
   }
   
   # When map is clicked, show a popup with city info
