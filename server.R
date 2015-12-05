@@ -4,11 +4,11 @@
 function(input, output, session) {
   
   # data table
-  output$data <- renderDataTable({
+  output$data <- DT::renderDataTable({
     r <- data()
     DT::datatable(r, 
                   escape = c(-2), 
-                  class = "hover row-border nowrap stripe",
+                  class = "nowrap hover row-border stripe",
                   selection = "none")
   }, server = FALSE)
   
@@ -80,10 +80,10 @@ function(input, output, session) {
       name <- input$goto$name
       lat <- input$goto$lat
       lng <- input$goto$lng
-      show_popup(name, lat, lng)
-      map %>% setView(lng = 180 - lonDrift, lat = 30, zoom = 2)
-      Sys.sleep(0.01)
+      # map %>% setView(lng = 180 - lonDrift, lat = 30, zoom = 2)
+      # Sys.sleep(0.01)
       map %>% fitBounds(lng - dist, lat - dist, lng + dist, lat + dist)
+      show_popup(name, lat, lng)
     })
   })
   
