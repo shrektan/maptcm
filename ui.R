@@ -66,11 +66,13 @@ navbarPage(
     )
   ),
   tabPanel(
-    "Info",
+    "Info & Disqus",
     icon = icon("info"),
     br(),
     p("If you find the info is wrong or you want to add new info, ",
-      "please contact ", tags$a(href = "mailto:maptcm@126.com", "maptcm@126.com", "."))
+      "please contact ", tags$a(href = "mailto:maptcm@126.com", "maptcm@126.com", ".")),
+    br(),
+    includeHTML("disqus_thread.html")
   )
   # tabPanel(
     # "Download Data",
