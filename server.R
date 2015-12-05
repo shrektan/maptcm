@@ -16,10 +16,11 @@ function(input, output, session) {
   output$map <- renderLeaflet({
     leaflet() %>% 
       addTiles(
-        urlTemplate = "https://api.mapbox.com/v4/shrektan.ciffhrg2x8fe2suknjq6qv5g7/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoic2hyZWt0YW4iLCJhIjoiY2lmZmhyaTR3OGczeHNtbHhyb2Rjb2cwcSJ9.c2vjzcma6a24uYuUpyXUWQ",
+        urlTemplate = "https://api.mapbox.com/v4/shrektan.ciffhrg2x8fe2suknjq6qv5g7/{z}/{x}/{y}@2x.png?access_token=pk.eyJ1Ijoic2hyZWt0YW4iLCJhIjoiY2lmZmhyaTR3OGczeHNtbHhyb2Rjb2cwcSJ9.c2vjzcma6a24uYuUpyXUWQ",
         attribution = 'Maps by <a href="http://www.mapbox.com/" target = "_blank">Mapbox</a>'
       ) %>% 
-      setView(lng = 0, lat = 30, zoom = 2)
+      setView(lng = 180 - lonDrift, lat = 30, zoom = 2) %>%
+      setMaxBounds(-lonDrift, -75, -lonDrift + 360, 90)
   })
   
   def_icons <- iconList(
@@ -32,9 +33,9 @@ function(input, output, session) {
   observe({
     leafletProxy("map", data = data()) %>%
       clearShapes() %>%
-      addMarkers(~Lon, ~Lat, layerId = ~Name, #icon = ~def_icons[Class], 
-                 clusterOptions = markerClusterOptions(showCoverageOnHover = FALSE,
-                                                       spiderfyOnMaxZoom = FALSE))
+      addMarkers(~Lon, ~Lat, layerId = ~Name) #, #icon = ~def_icons[Class], 
+                 # clusterOptions = markerClusterOptions(showCoverageOnHover = FALSE,
+                                                       # spiderfyOnMaxZoom = FALSE))
   })
   
  
@@ -80,7 +81,7 @@ function(input, output, session) {
       lat <- input$goto$lat
       lng <- input$goto$lng
       show_popup(name, lat, lng)
-      map %>% setView(lng = 0, lat = 30, zoom = 2)
+      map %>% setView(lng = 180 - lonDrift, lat = 30, zoom = 2)
       Sys.sleep(0.01)
       map %>% fitBounds(lng - dist, lat - dist, lng + dist, lat + dist)
     })
@@ -91,7 +92,7 @@ function(input, output, session) {
       shinyjs::hide(id = "controls", anim = TRUE, animType = "slide", time = 1)
       leafletProxy("map") %>% 
         clearPopups() %>%
-        setView(lng = 0, lat = 30, zoom = 2)
+        setView(lng = 180 - lonDrift, lat = 30, zoom = 2)
     }
   )
   

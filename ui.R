@@ -36,8 +36,13 @@ navbarPage(
       tags$div(
         id = "cite",
         p(
-          'Data provided by ',
-          tags$em('Tsinghua university, Xiaomei Xu, Zheng Yang.'),
+          'Contributed by ',
+          tags$em('Tsinghua university, Xiaomei Xu, Zheng Yang, Lai Yu.')
+        ),
+        p(
+          "App made by ", 
+          tags$a(href = "mailto:shrektan@126.com", "Xianying Tan"),
+          ".",
           "Powered by ",
           tags$a(href = "http://shiny.rstudio.com", target = "_blank", "Shiny"),
           "."

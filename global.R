@@ -14,6 +14,10 @@ library(shinyBS)
 library(leaflet)
 library(readr)
 
+# Lon drift ---------------------------------------------------------------
+
+lonDrift <- 30L
+
 # util --------------------------------------------------------------------
 
 # na2blank
@@ -54,6 +58,7 @@ load_data <- function(path) {
     read_csv(path, 
              col_types = cols(ifDeleted = col_logical(), 
                               TimeStamp = col_datetime())) %>%
+    dplyr::mutate(Lon = ifelse(Lon < -lonDrift, Lon + 360, Lon)) %>%
     setDT()
   f_ <- function(lat, lng, name) {
     stopifnot(length(lat) == 1, length(lng) == 1, length(name) == 1)
