@@ -23,9 +23,9 @@ for (i in 1:nrow(data)) {
 
 readr::write_csv(data, "data.csv")
 openxlsx::write.xlsx(data, "tmp.xlsx")
-ggmap::geocode("165 Hydes Creek Rd，Bellingen NSW 2454, Australian", source = "google")
+ggmap::geocode("Selangor，Malaysia", source = "google")
 
-ggmap::geocode("", source = "google")
+ggmap::geocode("50 Chin Swee Road #01-02 Thong Chai Building Singapore ", source = "google")
 
 
 data <- readxl::read_excel("tmp.xlsx")
@@ -38,3 +38,8 @@ for (i in 1:nrow(data)) {
     set(data, i, "Lat", tmp$lat)
   }
 }
+
+library(magrittr)
+data <- readxl::read_excel("data.xlsx") %>% setDT()
+data[, c("ifDeleted", "TimeStamp") := list(FALSE, Sys.time())]
+readr::write_csv(data, "data/data.csv")
