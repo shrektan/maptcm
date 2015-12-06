@@ -5,7 +5,7 @@ function(input, output, session) {
   
   # data table
   output$data <- DT::renderDataTable({
-    r <- data()
+    r <- data() %>% dplyr::select(-Lon, -Lat, -ifDeleted, -TimeStamp)
     DT::datatable(r, 
                   escape = c(-2), 
                   class = "nowrap hover row-border stripe",
