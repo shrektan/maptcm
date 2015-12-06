@@ -10,7 +10,7 @@ function(input, output, session) {
                   escape = c(-2), 
                   class = "nowrap hover row-border stripe",
                   selection = "none")
-  }, server = FALSE)
+  }, server = TRUE)
   
   # main server
   output$map <- renderLeaflet({
