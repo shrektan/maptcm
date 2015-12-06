@@ -9,7 +9,8 @@ function(input, output, session) {
     DT::datatable(r, 
                   escape = c(-2), 
                   class = "nowrap hover row-border stripe",
-                  selection = "none")
+                  selection = "none",
+                  options = list(scrollX = TRUE))
   }, server = TRUE)
   
   # main server

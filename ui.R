@@ -58,10 +58,7 @@ navbarPage(
     fluidRow(
       column(
         width = 12, 
-        div(
-          class = "dt",
-          dataTableOutput("data")
-        )
+        dataTableOutput("data")
       )
     )
   ),
