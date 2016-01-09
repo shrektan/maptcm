@@ -32,9 +32,17 @@ function(input, output, session) {
   )
   
   observe({
+    pal <- colorFactor("Set1", domain = sort(unique(data()$Class)))
     leafletProxy("map", data = data()) %>%
       clearShapes() %>%
-      addMarkers(~Lon, ~Lat, layerId = ~Name) #, #icon = ~def_icons[Class], 
+      addCircleMarkers(
+        ~Lon, ~Lat, layerId = ~Name,
+        radius = 6L,
+        color = ~pal(Class),
+        stroke = FALSE,
+        fillOpacity = 0.8
+      )
+      # addMarkers(~Lon, ~Lat, layerId = ~Name) #, #icon = ~def_icons[Class], 
                  # clusterOptions = markerClusterOptions(showCoverageOnHover = FALSE,
                                                        # spiderfyOnMaxZoom = FALSE))
   })
