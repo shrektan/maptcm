@@ -15,7 +15,7 @@ $(document).on("click", ".go-map", function(e) {
 
 // resize the window size of the map
 $(window).resize(function(){
-  $("div.outer").css("top", $("div.container").height());
+  $("div.outer").css("top", $("div.container-fluid").height());
   if ($(window).width() <= 940) {
     $("#github_ribbon").hide();
   } else {
@@ -30,7 +30,7 @@ $(document).ready(function(){
 
 $(window).load(function(){
   $("#loading-content").fadeOut(1500);
-  $("div.outer").css("top", $("div.container").height());
+  $("div.outer").css("top", $("div.container-fluid").height());
    if ($(window).width() <= 940) {
     $("#github_ribbon").hide();
   } else {
