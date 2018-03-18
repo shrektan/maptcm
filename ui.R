@@ -67,9 +67,9 @@ navbarPage(
     icon = icon("info"),
     br(),
     p("If you find the info is wrong or you want to add new info, ",
-      "please contact ", tags$a(href = "mailto:maptcm@126.com", "maptcm@126.com", ".")),
-    br(),
-    includeHTML("disqus_thread.html")
+      "please contact ", tags$a(href = "mailto:maptcm@126.com", "maptcm@126.com", "."))
+    # br(),
+    # includeHTML("disqus_thread.html")
   )
   # tabPanel(
     # "Download Data",
@@ -89,6 +89,7 @@ navbarPage(
       id = "github_ribbon",
       href = "https://github.com/shrektan/CMUnivMap",
       target = "_blank",
+      display = "none",
       tags$img(
         style = "position: absolute; top: 0; right: 0; border: 0; z-index: 5000",
         src = "github-label-grey.png",
