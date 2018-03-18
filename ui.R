@@ -5,7 +5,7 @@ navbarPage(
   title = "Map of TCM",
   id = "nav",
   inverse = FALSE,
-  theme = shinytheme("simplex"),
+  theme = "simplex.css",
   collapsible = TRUE,
   tabPanel(
     "Map",
