@@ -17,10 +17,12 @@ function(input, output, session) {
   output$map <- renderLeaflet({
     leaflet() %>% 
       addTiles(
-        urlTemplate = "https://api.mapbox.com/v4/shrektan.ciffhrg2x8fe2suknjq6qv5g7/{z}/{x}/{y}@2x.png?access_token=pk.eyJ1Ijoic2hyZWt0YW4iLCJhIjoiY2lmZmhyaTR3OGczeHNtbHhyb2Rjb2cwcSJ9.c2vjzcma6a24uYuUpyXUWQ",
-        attribution = 'Maps by <a href="http://www.mapbox.com/" target = "_blank">Mapbox</a>'
+        "http://webrd02.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}",
+        # urlTemplate = "https://api.mapbox.com/v4/shrektan.ciffhrg2x8fe2suknjq6qv5g7/{z}/{x}/{y}@2x.png?access_token=pk.eyJ1Ijoic2hyZWt0YW4iLCJhIjoiY2lmZmhyaTR3OGczeHNtbHhyb2Rjb2cwcSJ9.c2vjzcma6a24uYuUpyXUWQ",
+        attribution = 'Maps by <a href="http://www.mapbox.com/" target = "_blank">Mapbox</a>',
+        tileOptions(tileSize = 256, minZoom = 3, maxZoom = 17)
       ) %>% 
-      setView(lng = 180 - lonDrift, lat = 30, zoom = 2) %>%
+      setView(lng = 180 - lonDrift, lat = 30, zoom = 3) %>%
       setMaxBounds(-lonDrift, -75, -lonDrift + 360, 90)
   })
   
