@@ -38,11 +38,10 @@ shinyjs_validate <- function(...) {
 }
 
 # bs Panel
-bsPanel <- function(theme = "default", header, style = NULL, ...) {
+bsPanel <- function(theme = "default", header, ...) {
   div(
     class = paste0("panel panel-", theme),
-    style = style,
-    div(class = "panel-heading", header),
+    {if (!is.null(header)) div(class = "panel-heading", header)},
     div(class = "panel-body", ...)
   )
 }
@@ -78,7 +77,12 @@ load_data <- function(path) {
     .[ifDeleted == FALSE] %>%
     .[, GoTo := Map(f_, Lat, Lon, Name) %>% as.character()]
   tmp <- colnames(dt)[colnames(dt) != "GoTo"]
-  setcolorder(dt, c("GoTo", tmp))
+  setcolorder(
+    dt, 
+    c("GoTo", "NameCN", "Name", "Class", "Country", 
+      "City", "Address", "Website",
+      "Lon", "Lat", "ifDeleted", "TimeStamp")
+  )
 }
 
 data <- reactiveFileReader(

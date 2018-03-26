@@ -2,13 +2,13 @@
 
 # new ui ------------------------------------------------------------------
 navbarPage(
-  title = "Map of TCM",
+  title = "中医在全球 Map of TCM",
   id = "nav",
   inverse = FALSE,
   theme = "simplex.css",
   collapsible = TRUE,
   tabPanel(
-    "地图Map",
+    "地图 Map",
     icon = icon("globe"),
     div(
       class = "outer",
@@ -52,22 +52,27 @@ navbarPage(
   ),
   
   tabPanel(
-    "数据Data",
+    "数据 Data",
     icon = icon("search"),
-    hr(),
-    fluidRow(
-      column(
-        width = 12, 
-        dataTableOutput("data")
+    bsPanel(
+      "default",
+      NULL,
+      fluidRow(
+        column(
+          width = 12, 
+          dataTableOutput("data")
+        )
       )
     )
   ),
   tabPanel(
-    "其他Misc",
+    "其他 Misc",
     icon = icon("info"),
     br(),
+    p("如有疑问，请发邮件至",
+      tags$a(href = "mailto:maptcm@126.com", "maptcm@126.com"), "。"),
     p("If you find the info is wrong or you want to add new info, ",
-      "please contact ", tags$a(href = "mailto:maptcm@126.com", "maptcm@126.com", "."))
+      "please contact ", tags$a(href = "mailto:maptcm@126.com", "maptcm@126.com"), ".")
     # br(),
     # includeHTML("disqus_thread.html")
   )

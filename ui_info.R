@@ -25,7 +25,6 @@ fluidPage(
     bsPanel(
       theme = "default",
       header = "Info Panel",
-      style = NULL,
       fluidRow(
         column(
           width = 6,

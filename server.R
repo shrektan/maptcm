@@ -1,4 +1,4 @@
-abbr_text <- function(x, length, suffix = "") {
+abbr_text <- function(x, length, suffix = "...") {
   if (length(x) > 1) return(purrr::map_chr(x, abbr_text, length = length, suffix = suffix))
   stopifnot(assertthat::is.string(x), assertthat::is.number(length), length >= 1L)
   if (isTRUE(is.na(x))) return("")
@@ -33,14 +33,15 @@ function(input, output, session) {
     DT::datatable(
       r, 
       escape = FALSE, 
-      class = "hover row-border stripe",
-      selection = "none",
-      colnames = c("TO", "中文名称CN", "英文名称EN", 
-                   "类别CLASS", "国家COUNTRY", "城市CITY", 
-                   "网址WEBSITE", "具体地址ADDRESS"),
+      class = "nowrap hover row-border stripe",
+      selection = "single",
+      colnames = c(" ", "中文名称 CN", "英文名称 EN", 
+                   "类别 CLASS", "国家 COUNTRY", "城市 CITY", 
+                   "具体地址 ADDRESS", "网址 WEBSITE"), 
       options = list(
         scrollX = TRUE,
-        language = list(url = "//cdn.datatables.net/plug-ins/1.10.16/i18n/Chinese.json")
+        language = list(url = "//cdn.datatables.net/plug-ins/1.10.16/i18n/Chinese.json"),
+        columnDefs = list(list(orderable = FALSE, targets = 0:1))
       )
     )
   }, server = TRUE)
