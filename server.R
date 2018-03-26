@@ -1,3 +1,16 @@
+abbr_text <- function(x, length, suffix = "") {
+  if (length(x) > 1) return(purrr::map_chr(x, abbr_text, length = length, suffix = suffix))
+  stopifnot(assertthat::is.string(x), assertthat::is.number(length), length >= 1L)
+  if (isTRUE(is.na(x))) return("")
+  flag_abbr <- (length < stringr::str_length(x))
+  if (isTRUE(flag_abbr)) {
+    res <- tags$abbr(paste0(stringr::str_sub(x, 1, length), suffix), title = x, content = x)
+  } else {
+    res <- htmltools::htmlEscape(x)
+  }
+  res <- stringr::str_replace_all(res, "\n", "/")
+  as.character(res)
+}
 
 # server ------------------------------------------------------------------
 
@@ -5,11 +18,22 @@ function(input, output, session) {
   
   # data table
   output$data <- DT::renderDataTable({
-    r <- data() %>% dplyr::select(-Lon, -Lat, -ifDeleted, -TimeStamp)
+    r <- 
+      data() %>% 
+      dplyr::select(-Lon, -Lat, -ifDeleted, -TimeStamp) %>%
+      dplyr::mutate(
+        NameCN = abbr_text(NameCN, length = 18L),
+        Name = abbr_text(Name, length = 48L),
+        Class = abbr_text(Class, length = 15),
+        Country = abbr_text(Country, length = 15),
+        City = abbr_text(City, length = 15),
+        Website = purrr::map_chr(Website, ~as.character(tags$a(., href = sprintf("http://%s", .)))),
+        Address = abbr_text(Address, length = 30)
+      )
     DT::datatable(
       r, 
-      escape = c(-2), 
-      class = "nowrap hover row-border stripe",
+      escape = FALSE, 
+      class = "hover row-border stripe",
       selection = "none",
       colnames = c("TO", "中文名称CN", "英文名称EN", 
                    "类别CLASS", "国家COUNTRY", "城市CITY", 
