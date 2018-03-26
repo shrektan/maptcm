@@ -87,7 +87,7 @@ navbarPage(
     .,
     tags$a(
       id = "github_ribbon",
-      href = "https://github.com/shrektan/CMUnivMap",
+      href = "https://github.com/shrektan/maptcm",
       target = "_blank",
       display = "none",
       tags$img(
