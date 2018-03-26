@@ -8,7 +8,7 @@ navbarPage(
   theme = "simplex.css",
   collapsible = TRUE,
   tabPanel(
-    "Map",
+    "地图Map",
     icon = icon("globe"),
     div(
       class = "outer",
@@ -52,7 +52,7 @@ navbarPage(
   ),
   
   tabPanel(
-    "Data explorer",
+    "数据Data",
     icon = icon("search"),
     hr(),
     fluidRow(
@@ -63,7 +63,7 @@ navbarPage(
     )
   ),
   tabPanel(
-    "Info & Disqus",
+    "其他Misc",
     icon = icon("info"),
     br(),
     p("If you find the info is wrong or you want to add new info, ",
