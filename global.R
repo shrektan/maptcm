@@ -62,19 +62,23 @@ load_data <- function(path) {
     setDT()
   f_ <- function(lat, lng, name) {
     stopifnot(length(lat) == 1, length(lng) == 1, length(name) == 1)
-    as.character(tags$a(class = "go-map", href = "", 
-                        `data-lat` = lat,
-                        `data-long` = lng,
-                        `data-name` = name,
-                        tags$i(class = "fa fa-crosshairs")))
+    as.character(tags$a(
+      class = "go-map", 
+      href = "", 
+      `data-lat` = lat,
+      `data-long` = lng,
+      `data-name` = name,
+      tags$i(class = "fa fa-crosshairs")
+    ))
   }
-  dt <- 
-    tmp[, MaxTimeStamp := max(TimeStamp), by = Name][
-      MaxTimeStamp == TimeStamp
-      ][, MaxTimeStamp := NULL][ifDeleted == FALSE]
-  dt[, GoTo := Map(f_, Lat, Lon, Name) %>% as.character()]
+  dt <-
+    tmp[, MaxTimeStamp := max(TimeStamp), by = Name] %>%
+    .[MaxTimeStamp == TimeStamp] %>%
+    .[, MaxTimeStamp := NULL] %>%
+    .[ifDeleted == FALSE] %>%
+    .[, GoTo := Map(f_, Lat, Lon, Name) %>% as.character()]
   tmp <- colnames(dt)[colnames(dt) != "GoTo"]
-  dt[, c("GoTo", tmp), with = FALSE][]
+  setcolorder(dt, c("GoTo", tmp))
 }
 
 data <- reactiveFileReader(
