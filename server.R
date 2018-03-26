@@ -64,12 +64,12 @@ function(input, output, session) {
         title = "全球视野 Global View",
         onClick = JS("function(btn, map){ map.setZoom(2); }")
       )) %>%
-      addEasyButton(easyButton(
-        icon = "fa-crosshairs",
-        title = "我的位置 Locate Me",
-        onClick = JS("function(btn, map){ map.locate({setView: true}); }")
-      )) %>%
-      addMiniMap()
+      # addEasyButton(easyButton(
+      #   icon = "fa-crosshairs",
+      #   title = "我的位置 Locate Me",
+      #   onClick = JS("function(btn, map){ map.locate({setView: 'once', maxZoom: 15, flyTo: true}); }")
+      # )) %>%
+      addMiniMap(toggleDisplay = TRUE, autoToggleDisplay = TRUE)
   })
   
   def_icons <- iconList(
@@ -133,13 +133,13 @@ function(input, output, session) {
       # Sys.sleep(0.01)
       map <- leafletProxy("map")
       map %>% clearPopups()
-      dist <- 0.3
+      # dist <- 0.3
       name <- input$goto$name
       lat <- input$goto$lat
       lng <- input$goto$lng
-      # map %>% setView(lng = 180 - lonDrift, lat = 30, zoom = 2)
+      map %>% setView(lng = lng, lat = lat, zoom = 15)
       # Sys.sleep(0.01)
-      map %>% fitBounds(lng - dist, lat - dist, lng + dist, lat + dist)
+      # map %>% fitBounds(lng - dist, lat - dist, lng + dist, lat + dist)
       show_popup(name, lat, lng)
     })
   })
