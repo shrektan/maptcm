@@ -69,7 +69,7 @@ function(input, output, session) {
       #   title = "我的位置 Locate Me",
       #   onClick = JS("function(btn, map){ map.locate({setView: 'once', maxZoom: 15, flyTo: true}); }")
       # )) %>%
-      addMiniMap(toggleDisplay = TRUE, autoToggleDisplay = TRUE, zoomLevelFixed = 0)
+      addMiniMap(toggleDisplay = TRUE, autoToggleDisplay = TRUE, zoomLevelOffset = -10)
   })
   
   def_icons <- iconList(
