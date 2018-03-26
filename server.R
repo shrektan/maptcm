@@ -49,13 +49,27 @@ function(input, output, session) {
   
   # main server
   output$map <- renderLeaflet({
-    leaflet() %>% 
+    leaflet(
+      options = leafletOptions(minZoom = 2L, options = list(control = list(zoom = list(position = "topright"))))
+    ) %>% 
       addTiles(
         urlTemplate = "https://api.mapbox.com/v4/shrektan.ciffhrg2x8fe2suknjq6qv5g7/{z}/{x}/{y}@2x.png?access_token=pk.eyJ1Ijoic2hyZWt0YW4iLCJhIjoiY2lmZmhyaTR3OGczeHNtbHhyb2Rjb2cwcSJ9.c2vjzcma6a24uYuUpyXUWQ",
         attribution = 'Maps by <a href="http://www.mapbox.com/" target = "_blank">Mapbox</a>'
       ) %>% 
       setView(lng = 180 - lonDrift, lat = 30, zoom = 2) %>%
-      setMaxBounds(-lonDrift, -75, -lonDrift + 360, 90)
+      setMaxBounds(-lonDrift, -75, -lonDrift + 360, 90) %>%
+      addScaleBar("bottomright") %>%
+      addEasyButton(easyButton(
+        icon = "fa-globe",
+        title = "全球视野 Global View",
+        onClick = JS("function(btn, map){ map.setZoom(2); }")
+      )) %>%
+      addEasyButton(easyButton(
+        icon = "fa-crosshairs",
+        title = "我的位置 Locate Me",
+        onClick = JS("function(btn, map){ map.locate({setView: true}); }")
+      )) %>%
+      addMiniMap()
   })
   
   def_icons <- iconList(
