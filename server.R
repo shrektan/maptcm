@@ -6,11 +6,13 @@ function(input, output, session) {
   # data table
   output$data <- DT::renderDataTable({
     r <- data() %>% dplyr::select(-Lon, -Lat, -ifDeleted, -TimeStamp)
-    DT::datatable(r, 
-                  escape = c(-2), 
-                  class = "nowrap hover row-border stripe",
-                  selection = "none",
-                  options = list(scrollX = TRUE))
+    DT::datatable(
+      r, 
+      escape = c(-2), 
+      class = "nowrap hover row-border stripe",
+      selection = "none",
+      options = list(scrollX = TRUE)
+    )
   }, server = TRUE)
   
   # main server
