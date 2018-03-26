@@ -22,8 +22,8 @@ function(input, output, session) {
       data() %>% 
       dplyr::select(-Lon, -Lat, -ifDeleted, -TimeStamp) %>%
       dplyr::mutate(
-        NameCN = abbr_text(NameCN, length = 18L),
-        Name = abbr_text(Name, length = 48L),
+        NameCN = abbr_text(NameCN, length = 12L),
+        Name = abbr_text(Name, length = 35L),
         Class = abbr_text(Class, length = 15),
         Country = abbr_text(Country, length = 15),
         City = abbr_text(City, length = 15),
@@ -33,11 +33,12 @@ function(input, output, session) {
     DT::datatable(
       r, 
       escape = FALSE, 
-      class = "nowrap hover row-border stripe",
+      class = "hover row-border stripe",
       selection = "single",
       colnames = c(" ", "中文名称 CN", "英文名称 EN", 
                    "类别 CLASS", "国家 COUNTRY", "城市 CITY", 
                    "具体地址 ADDRESS", "网址 WEBSITE"), 
+      extensions = 'Responsive',
       options = list(
         scrollX = TRUE,
         language = list(url = "//cdn.datatables.net/plug-ins/1.10.16/i18n/Chinese.json"),
