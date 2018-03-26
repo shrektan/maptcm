@@ -11,7 +11,13 @@ function(input, output, session) {
       escape = c(-2), 
       class = "nowrap hover row-border stripe",
       selection = "none",
-      options = list(scrollX = TRUE)
+      colnames = c("TO", "中文名称CN", "英文名称EN", 
+                   "类别CLASS", "国家COUNTRY", "城市CITY", 
+                   "网址WEBSITE", "具体地址ADDRESS"),
+      options = list(
+        scrollX = TRUE,
+        language = list(url = "//cdn.datatables.net/plug-ins/1.10.16/i18n/Chinese.json")
+      )
     )
   }, server = TRUE)
   
