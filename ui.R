@@ -8,6 +8,7 @@ navbarPage(
   theme = "simplex.css",
   collapsible = TRUE,
   tabPanel(
+    value = "Map",
     "地图 Map",
     icon = icon("globe"),
     div(
