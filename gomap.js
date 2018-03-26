@@ -13,14 +13,18 @@ $(document).on("click", ".go-map", function(e) {
   });
 });
 
-// resize the window size of the map
-$(window).resize(function(){
-  $("div.outer").css("top", $("div.container-fluid").height());
-  if ($(window).width() <= 940) {
+var reset_size = function() {
+  $("div.outer").css("top", $("nav.navbar-static-top").height());
+   if ($(window).width() <= 940) {
     $("#github_ribbon").hide();
   } else {
     $("#github_ribbon").show();
   }
+};
+ 
+// resize the window size of the map
+$(window).resize(function(){
+  reset_size();
 });
 
 // better loading panel
@@ -28,12 +32,16 @@ $(document).ready(function(){
   $("#loading-content").show();
 });
 
+$(document).ready(function() {
+ $('.navbar-collapse').on('shown.bs.collapse', function() {
+   reset_size();
+ });
+ $('.navbar-collapse').on('hidden.bs.collapse', function() {
+   reset_size();
+ });
+});
+
 $(window).load(function(){
   $("#loading-content").fadeOut(1500);
-  $("div.outer").css("top", $("div.container-fluid").height());
-   if ($(window).width() <= 940) {
-    $("#github_ribbon").hide();
-  } else {
-    $("#github_ribbon").show();
-  }
+  reset_size();
 });
